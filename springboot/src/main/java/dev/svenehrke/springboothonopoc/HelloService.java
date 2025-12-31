@@ -1,4 +1,4 @@
-package dev.svenehrke.module1;
+package dev.svenehrke.springboothonopoc;
 
 public class HelloService {
     public String hello() {
