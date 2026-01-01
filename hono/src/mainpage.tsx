@@ -15,6 +15,8 @@ function init(app: Hono) {
 				<ul>
 					<li><a href="/greeting?greetee=You" target="_blank">Greeting</a></li>
 				</ul>
+
+				<a href="/logout">Logout</a>
 			</div>
 			</body>
 			</html>
