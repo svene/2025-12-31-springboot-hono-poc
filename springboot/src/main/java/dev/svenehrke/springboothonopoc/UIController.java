@@ -22,13 +22,13 @@ public class UIController {
 
 	@GetMapping("/")
 	@ResponseBody
-	public String home() {
+	public String index() {
 		// Step 1: Gather data from DB or services
 		// ...
 		// Step 2: Prepare HTTP POST request to HONO
 		String htmlResponse = restClient
 			.get()
-			.uri("http://localhost:3000/hello")
+			.uri("http://localhost:3000/")
 			.header(HttpHeaders.ACCEPT, MediaType.TEXT_HTML_VALUE)
 			.retrieve()
 			.body(String.class);
