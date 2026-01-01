@@ -11,6 +11,11 @@ import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
 
+/**
+ * General Forwarding Pattern (Spring -> Hono):
+ * - Step 1: Gather data from DB or services
+ * - Step 2: Forward HTTP request to HONO
+ */
 @Controller
 public class UIController {
 
@@ -27,10 +32,7 @@ public class UIController {
 	@GetMapping("/")
 	@ResponseBody
 	public String index() {
-		// Step 1: Gather data from DB or services:
-		// ...
-		// Step 2: Forward HTTP GET request to HONO:
-		return forwardGetToHono();
+		return restClient.get().retrieve().body(String.class);
 	}
 
 	@GetMapping("/greeting")
@@ -50,10 +52,4 @@ public class UIController {
 			.port("3000");
 	}
 
-	private String forwardGetToHono() {
-		return restClient
-			.get()
-			.retrieve()
-			.body(String.class);
-	}
 }
