@@ -1,4 +1,4 @@
-package dev.svenehrke.springboothonopoc.web;
+package dev.svenehrke.springboothonopoc.outbound.hono;
 
 import dev.svenehrke.springboothonopoc.core.Person;
 import org.springframework.http.HttpHeaders;
@@ -14,45 +14,30 @@ import java.util.List;
 @Service
 public class HonoApp {
 	public static final String START_URL = "/people";
-	private static final String HONO_URL = "http://localhost:3000/";
-	private final RestClient restClient;
+	private final HonoHelper honoHelper;
 
-	public HonoApp() {
-		restClient = RestClient.builder()
-			.defaultHeader(HttpHeaders.ACCEPT, MediaType.TEXT_HTML_VALUE)
-			.baseUrl(URI.create(HONO_URL))
-			.build();
+	public HonoApp(HonoHelper honoHelper) {
+		this.honoHelper = honoHelper;
 	}
 
 	public record PeopleVM(List<Person> people){};
 	public String people(PeopleVM vm) {
-		return restClient.post().uri(START_URL)
+		return honoHelper.restClient.post().uri(START_URL)
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(vm)
 			.retrieve().body(String.class);
 	}
 
 	public String greeting(String greetee) {
-		return restClient
+		return honoHelper.restClient
 			.get()
-			.uri(it -> defaultUrlBuilder(it).path("/greeting").queryParam("greetee", greetee).build())
+			.uri(it -> honoHelper.defaultUrlBuilder(it).path("/greeting").queryParam("greetee", greetee).build())
 			.retrieve()
 			.body(String.class);
 	}
 
 	public ResponseEntity<String> staticResource(String url) {
-		return restClient
-			.get()
-			.uri(it -> defaultUrlBuilder(it).path(url).build())
-			.retrieve()
-			.toEntity(String.class)
-			;
+		return honoHelper.staticResource(url);
 	}
 
-	private UriBuilder defaultUrlBuilder(UriBuilder uriBuilder) {
-		return uriBuilder
-			.scheme("http")
-			.host("localhost")
-			.port("3000");
-	}
 }

@@ -1,13 +1,14 @@
 package dev.svenehrke.springboothonopoc.web;
 
 import dev.svenehrke.springboothonopoc.core.PeopleService;
+import dev.svenehrke.springboothonopoc.outbound.hono.HonoApp;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
-import static dev.svenehrke.springboothonopoc.web.HonoApp.START_URL;
+import static dev.svenehrke.springboothonopoc.outbound.hono.HonoApp.START_URL;
 
 /**
  * General Forwarding Pattern (Spring -> Hono):
