@@ -1,5 +1,5 @@
 import {Hono} from "hono";
-import {callPostEndpoint} from "./dev_forwarder";
+import {callPostEndpoint} from "./infra/dev_forwarder";
 import {mainpage, VM as MainPageVM} from "../app/mainpage";
 import {devService} from "./dev_service";
 
