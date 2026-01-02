@@ -1,5 +1,6 @@
 package dev.svenehrke.springboothonopoc.web;
 
+import dev.svenehrke.springboothonopoc.core.PeopleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,9 +18,11 @@ import static dev.svenehrke.springboothonopoc.web.HonoApp.START_URL;
 public class UIController {
 
 	private final HonoApp honoApp;
+	private final PeopleService peopleService;
 
-	public UIController(HonoApp honoApp) {
+	public UIController(HonoApp honoApp, PeopleService peopleService) {
 		this.honoApp = honoApp;
+		this.peopleService = peopleService;
 	}
 
 	@GetMapping("/")
@@ -30,7 +33,8 @@ public class UIController {
 	@GetMapping(START_URL)
 	@ResponseBody
 	public String people() {
-		return honoApp.people();
+		var people = peopleService.people();
+		return honoApp.people(people);
 	}
 
 	@GetMapping("/greeting")

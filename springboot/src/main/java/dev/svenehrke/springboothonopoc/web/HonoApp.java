@@ -1,5 +1,6 @@
 package dev.svenehrke.springboothonopoc.web;
 
+import dev.svenehrke.springboothonopoc.core.Person;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @Service
 public class HonoApp {
@@ -21,8 +23,11 @@ public class HonoApp {
 			.build();
 	}
 
-	public String people() {
-		return restClient.get().uri(START_URL).retrieve().body(String.class);
+	public String people(List<Person> people) {
+		return restClient.post().uri(START_URL)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(people)
+			.retrieve().body(String.class);
 	}
 
 	public String greeting(String greetee) {
