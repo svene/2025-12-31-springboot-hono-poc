@@ -12,6 +12,10 @@ export const BulmaPage = (props: { children: ComponentChildren }) => (
 			{props.children}
 		</div>
 	</div>
+
+	<hr/>
+	<a href="/logout">Logout</a> | <a href="/greeting?greetee=You">Greeting</a>
+
 	</body>
 	</html>
 );
