@@ -1,5 +1,5 @@
 import {Hono} from "hono";
-import {BulmaPage} from "./components/bulmapage";
+import {BulmaPage} from "../ui/components/bulmapage";
 export const URL = '/greeting';
 
 function init(hono: Hono) {
