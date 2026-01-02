@@ -1,21 +1,14 @@
 import {Hono} from "hono";
+import {BulmaPage} from "./components/bulmapage";
 export const URL = '/greeting';
 
 function init(hono: Hono) {
 	hono.get(URL, (c) => {
 		const greetee = c.req.query('greetee') ?? '-';
 		return c.render(
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8"/>
-			</head>
-
-			<body>
-			<div>
-				<div>Hello {greetee} !</div>
-			</div>
-			</body>
-			</html>
+			<BulmaPage>
+					<div>Hello {greetee} !</div>
+			</BulmaPage>
 		)
 	});
 }

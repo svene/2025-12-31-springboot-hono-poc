@@ -1,25 +1,20 @@
 import {Hono} from "hono";
+import { BulmaPage } from "./components/bulmapage";
 export const URL = '/people';
 
 function init(hono: Hono) {
 	hono.get(URL, (c) => {
 		return c.render(
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8"/>
-			</head>
+			<BulmaPage>
+				<>
+					<h1 class="title">Application</h1>
+					<ul>
+						<li><a href="/greeting?greetee=You">Greeting</a></li>
+					</ul>
 
-			<body>
-			<div>
-				<h1>Application</h1>
-				<ul>
-					<li><a href="/greeting?greetee=You" target="_blank">Greeting</a></li>
-				</ul>
-
-				<a href="/logout">Logout</a>
-			</div>
-			</body>
-			</html>
+					<a href="/logout">Logout</a>
+				</>
+			</BulmaPage>
 		)
 	});
 }
