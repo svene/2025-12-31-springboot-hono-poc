@@ -23,10 +23,11 @@ public class HonoApp {
 			.build();
 	}
 
-	public String people(List<Person> people) {
+	public record PeopleVM(List<Person> people){};
+	public String people(PeopleVM vm) {
 		return restClient.post().uri(START_URL)
 			.contentType(MediaType.APPLICATION_JSON)
-			.body(people)
+			.body(vm)
 			.retrieve().body(String.class);
 	}
 
@@ -34,6 +35,14 @@ public class HonoApp {
 		return restClient
 			.get()
 			.uri(it -> defaultUrlBuilder(it).path("/greeting").queryParam("greetee", greetee).build())
+			.retrieve()
+			.body(String.class);
+	}
+
+	public String staticResource(String url) {
+		return restClient
+			.get()
+			.uri(it -> defaultUrlBuilder(it).path(url).build())
 			.retrieve()
 			.body(String.class);
 	}

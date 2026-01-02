@@ -2,9 +2,13 @@ import {Hono} from "hono";
 import {Person} from "../ui/model";
 import {BulmaPage} from "../ui/components/bulmapage";
 
-export const URL = '/people';
+const URL = '/people';
 
-function ui(people: Person[]) {
+export type VM = {
+	people: Person[],
+}
+
+function ui(vm: VM) {
 	return (
 		<BulmaPage>
 			<>
@@ -16,7 +20,7 @@ function ui(people: Person[]) {
 						<th>Lastname</th>
 					</tr>
 					</thead>
-					{people.map((it) => (
+					{vm.people.map((it) => (
 						<tr>
 							<td>{it.firstName}</td>
 							<td>{it.lastName}</td>
@@ -30,9 +34,8 @@ function ui(people: Person[]) {
 
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
-		console.log('in POST');
-		const people = await c.req.json() as Person[];
-		return c.render(ui(people));
+		const vm = await c.req.json() as VM;
+		return c.render(ui(vm));
 	});
 }
 

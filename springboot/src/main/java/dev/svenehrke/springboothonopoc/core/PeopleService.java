@@ -11,7 +11,7 @@ public class PeopleService {
             new Person("John", "Lennon"),
             new Person("Paul", "McCartney"),
             new Person("George", "Harrison"),
-            new Person("Ringo", "StarrYY")
+            new Person("Ringo", "Starr")
         );
     }
 }

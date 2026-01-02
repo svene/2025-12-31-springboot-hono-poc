@@ -1,8 +1,8 @@
 import {Hono} from "hono";
-import {mainpage_dev} from "./mainpage_dev";
+import {dev_api} from "./dev_api";
 
 function init(hono: Hono) {
-	mainpage_dev.init(hono);
+	dev_api.init(hono);
 }
 
 export const dev = {

@@ -34,7 +34,7 @@ public class UIController {
 	@ResponseBody
 	public String people() {
 		var people = peopleService.people();
-		return honoApp.people(people);
+		return honoApp.people(new HonoApp.PeopleVM(people));
 	}
 
 	@GetMapping("/greeting")

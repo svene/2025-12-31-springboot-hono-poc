@@ -1,13 +1,4 @@
-type PostHtmlOptions<T> = {
-	url: string
-	data: T
-}
-
-export async function postForHtml<T>(
-	options: PostHtmlOptions<T>
-): Promise<string> {
-	const { url, data } = options
-
+export async function callPostEndpoint<T>(url: string, vm: T): Promise<string> {
 	if (process.env.NODE_ENV !== 'development') {
 		throw new Error('postForHtml() must only be used in development')
 	}
@@ -17,7 +8,7 @@ export async function postForHtml<T>(
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(data),
+		body: JSON.stringify(vm),
 	})
 
 	if (!res.ok) {
