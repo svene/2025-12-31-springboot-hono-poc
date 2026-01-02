@@ -3,6 +3,7 @@ package dev.svenehrke.springboothonopoc.web;
 import dev.svenehrke.springboothonopoc.core.Person;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriBuilder;
@@ -39,12 +40,13 @@ public class HonoApp {
 			.body(String.class);
 	}
 
-	public String staticResource(String url) {
+	public ResponseEntity<String> staticResource(String url) {
 		return restClient
 			.get()
 			.uri(it -> defaultUrlBuilder(it).path(url).build())
 			.retrieve()
-			.body(String.class);
+			.toEntity(String.class)
+			;
 	}
 
 	private UriBuilder defaultUrlBuilder(UriBuilder uriBuilder) {
