@@ -2,7 +2,7 @@ package dev.svenehrke.springboothonopoc.web;
 
 import dev.svenehrke.springboothonopoc.core.PeopleService;
 import dev.svenehrke.springboothonopoc.core.Person;
-import dev.svenehrke.springboothonopoc.outbound.hono.HonoHelper;
+import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +23,14 @@ public class UIController {
 	public static final String PEOPLE_URL = "/people";
 
 	private final PeopleService peopleService;
-	private final HonoHelper honoHelper;
+	private final HonoAppClient honoAppClient;
 
 	public UIController(
 		PeopleService peopleService,
-		HonoHelper honoHelper
+		HonoAppClient honoAppClient
 	) {
 		this.peopleService = peopleService;
-		this.honoHelper = honoHelper;
+		this.honoAppClient = honoAppClient;
 	}
 
 	@GetMapping("/")
@@ -43,12 +43,12 @@ public class UIController {
 	@GetMapping(PEOPLE_URL)
 	public ResponseEntity<String> people() {
 		var people = peopleService.people();
-		return honoHelper.post(PEOPLE_URL, new PeopleVM(people));
+		return honoAppClient.post(PEOPLE_URL, new PeopleVM(people));
 	}
 
 	@GetMapping("/greeting")
 	public ResponseEntity<String> greeting(@RequestParam String greetee) {
-		return honoHelper.get("/greeting", Map.of("greetee", greetee));
+		return honoAppClient.get("/greeting", Map.of("greetee", greetee));
 	}
 
 

@@ -12,11 +12,11 @@ import java.net.URI;
 import java.util.Map;
 
 @Service
-public class HonoHelper {
+public class HonoAppClient {
 	private static final String HONO_URL = "http://localhost:3000/";
 	final RestClient restClient;
 
-	public HonoHelper() {
+	public HonoAppClient() {
 		restClient = RestClient.builder()
 			.defaultHeader(HttpHeaders.ACCEPT, MediaType.TEXT_HTML_VALUE)
 			.baseUrl(URI.create(HONO_URL))
