@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
@@ -21,6 +22,7 @@ public class UIController {
 
 	private static final String HONO_URL = "http://localhost:3000/";
 	private final RestClient restClient;
+	public static final String START_URL = "/people";
 
 	public UIController() {
 		restClient = RestClient.builder()
@@ -30,9 +32,14 @@ public class UIController {
 	}
 
 	@GetMapping("/")
+	public RedirectView index() {
+		return new RedirectView(START_URL);
+	}
+
+	@GetMapping(START_URL)
 	@ResponseBody
-	public String index() {
-		return restClient.get().retrieve().body(String.class);
+	public String people() {
+		return restClient.get().uri(START_URL).retrieve().body(String.class);
 	}
 
 	@GetMapping("/greeting")

@@ -1,5 +1,5 @@
 import {Hono} from "hono";
-export const URL = '/';
+export const URL = '/people';
 
 function init(app: Hono) {
 	app.get(URL, (c) => {
