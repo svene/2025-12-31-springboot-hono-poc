@@ -4,8 +4,10 @@ import dev.svenehrke.springboothonopoc.core.Person;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HonoAppClient {
@@ -24,12 +26,8 @@ public class HonoAppClient {
 			.retrieve().body(String.class);
 	}
 
-	public String greeting(String greetee) {
-		return honoHelper.restClient
-			.get()
-			.uri(it -> honoHelper.defaultUrlBuilder(it).path("/greeting").queryParam("greetee", greetee).build())
-			.retrieve()
-			.body(String.class);
+	public ResponseEntity<String> greeting(String greetee) {
+		return honoHelper.get("/greeting", Map.of("greetee", greetee));
 	}
 
 	public ResponseEntity<String> staticResource(String url) {

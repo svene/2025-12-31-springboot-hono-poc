@@ -4,10 +4,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
+import java.util.Map;
 
 @Service
 public class HonoHelper {
@@ -30,7 +32,20 @@ public class HonoHelper {
 			;
 	}
 
-	UriBuilder defaultUrlBuilder(UriBuilder uriBuilder) {
+	ResponseEntity<String> get(String path, Map<String, String> queryParams) {
+		return restClient
+			.get()
+			.uri(it -> defaultUrlBuilder(it)
+				.path(path)
+				.queryParams(MultiValueMap.fromSingleValue(queryParams))
+				.build()
+			)
+			.retrieve()
+			.toEntity(String.class)
+			;
+	}
+
+	private UriBuilder defaultUrlBuilder(UriBuilder uriBuilder) {
 		return uriBuilder
 			.scheme("http")
 			.host("localhost")

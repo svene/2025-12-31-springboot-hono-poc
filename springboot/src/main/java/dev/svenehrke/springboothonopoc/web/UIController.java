@@ -2,6 +2,7 @@ package dev.svenehrke.springboothonopoc.web;
 
 import dev.svenehrke.springboothonopoc.core.PeopleService;
 import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,8 +40,7 @@ public class UIController {
 	}
 
 	@GetMapping("/greeting")
-	@ResponseBody
-	public String greeting(@RequestParam String greetee) {
+	public ResponseEntity<String> greeting(@RequestParam String greetee) {
 		return honoAppClient.greeting(greetee);
 	}
 
