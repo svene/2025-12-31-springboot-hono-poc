@@ -23,7 +23,7 @@ public class HonoHelper {
 			.build();
 	}
 
-	ResponseEntity<String> staticResource(String url) {
+	public ResponseEntity<String> staticResource(String url) {
 		return restClient
 			.get()
 			.uri(it -> defaultUrlBuilder(it).path(url).build())
@@ -32,7 +32,7 @@ public class HonoHelper {
 			;
 	}
 
-	ResponseEntity<String> get(String path, Map<String, String> queryParams) {
+	public ResponseEntity<String> get(String path, Map<String, String> queryParams) {
 		return restClient
 			.get()
 			.uri(it -> defaultUrlBuilder(it)
@@ -40,6 +40,17 @@ public class HonoHelper {
 				.queryParams(MultiValueMap.fromSingleValue(queryParams))
 				.build()
 			)
+			.retrieve()
+			.toEntity(String.class)
+			;
+	}
+
+	public <T> ResponseEntity<String> post(String uri, T vm) {
+		return restClient
+			.post()
+			.uri(uri)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(vm)
 			.retrieve()
 			.toEntity(String.class)
 			;

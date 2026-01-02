@@ -1,15 +1,16 @@
 package dev.svenehrke.springboothonopoc.web;
 
 import dev.svenehrke.springboothonopoc.core.PeopleService;
-import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
+import dev.svenehrke.springboothonopoc.core.Person;
+import dev.svenehrke.springboothonopoc.outbound.hono.HonoHelper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
-import static dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient.START_URL;
+import java.util.List;
+import java.util.Map;
 
 /**
  * General Forwarding Pattern (Spring -> Hono):
@@ -19,29 +20,35 @@ import static dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient.START_
 @Controller
 public class UIController {
 
-	private final HonoAppClient honoAppClient;
-	private final PeopleService peopleService;
+	public static final String PEOPLE_URL = "/people";
 
-	public UIController(HonoAppClient honoAppClient, PeopleService peopleService) {
-		this.honoAppClient = honoAppClient;
+	private final PeopleService peopleService;
+	private final HonoHelper honoHelper;
+
+	public UIController(
+		PeopleService peopleService,
+		HonoHelper honoHelper
+	) {
 		this.peopleService = peopleService;
+		this.honoHelper = honoHelper;
 	}
 
 	@GetMapping("/")
 	public RedirectView index() {
-		return new RedirectView(START_URL);
+		return new RedirectView(PEOPLE_URL);
 	}
 
-	@GetMapping(START_URL)
-	@ResponseBody
-	public String people() {
+	public record PeopleVM(List<Person> people){};
+
+	@GetMapping(PEOPLE_URL)
+	public ResponseEntity<String> people() {
 		var people = peopleService.people();
-		return honoAppClient.people(new HonoAppClient.PeopleVM(people));
+		return honoHelper.post(PEOPLE_URL, new PeopleVM(people));
 	}
 
 	@GetMapping("/greeting")
 	public ResponseEntity<String> greeting(@RequestParam String greetee) {
-		return honoAppClient.greeting(greetee);
+		return honoHelper.get("/greeting", Map.of("greetee", greetee));
 	}
 
 
