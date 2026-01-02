@@ -1,14 +1,14 @@
 package dev.svenehrke.springboothonopoc.web;
 
 import dev.svenehrke.springboothonopoc.core.PeopleService;
-import dev.svenehrke.springboothonopoc.outbound.hono.HonoApp;
+import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
-import static dev.svenehrke.springboothonopoc.outbound.hono.HonoApp.START_URL;
+import static dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient.START_URL;
 
 /**
  * General Forwarding Pattern (Spring -> Hono):
@@ -18,11 +18,11 @@ import static dev.svenehrke.springboothonopoc.outbound.hono.HonoApp.START_URL;
 @Controller
 public class UIController {
 
-	private final HonoApp honoApp;
+	private final HonoAppClient honoAppClient;
 	private final PeopleService peopleService;
 
-	public UIController(HonoApp honoApp, PeopleService peopleService) {
-		this.honoApp = honoApp;
+	public UIController(HonoAppClient honoAppClient, PeopleService peopleService) {
+		this.honoAppClient = honoAppClient;
 		this.peopleService = peopleService;
 	}
 
@@ -35,13 +35,13 @@ public class UIController {
 	@ResponseBody
 	public String people() {
 		var people = peopleService.people();
-		return honoApp.people(new HonoApp.PeopleVM(people));
+		return honoAppClient.people(new HonoAppClient.PeopleVM(people));
 	}
 
 	@GetMapping("/greeting")
 	@ResponseBody
 	public String greeting(@RequestParam String greetee) {
-		return honoApp.greeting(greetee);
+		return honoAppClient.greeting(greetee);
 	}
 
 

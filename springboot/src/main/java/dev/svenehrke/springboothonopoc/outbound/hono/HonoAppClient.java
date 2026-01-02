@@ -1,22 +1,18 @@
 package dev.svenehrke.springboothonopoc.outbound.hono;
 
 import dev.svenehrke.springboothonopoc.core.Person;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
-import org.springframework.web.util.UriBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @Service
-public class HonoApp {
+public class HonoAppClient {
 	public static final String START_URL = "/people";
 	private final HonoHelper honoHelper;
 
-	public HonoApp(HonoHelper honoHelper) {
+	public HonoAppClient(HonoHelper honoHelper) {
 		this.honoHelper = honoHelper;
 	}
 

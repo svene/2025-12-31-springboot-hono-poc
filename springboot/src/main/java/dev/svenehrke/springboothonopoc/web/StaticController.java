@@ -1,6 +1,6 @@
 package dev.svenehrke.springboothonopoc.web;
 
-import dev.svenehrke.springboothonopoc.outbound.hono.HonoApp;
+import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StaticController {
 
-	private final HonoApp honoApp;
+	private final HonoAppClient honoAppClient;
 
-	public StaticController(HonoApp honoApp) {
-		this.honoApp = honoApp;
+	public StaticController(HonoAppClient honoAppClient) {
+		this.honoAppClient = honoAppClient;
 	}
 
 	@GetMapping("/static/**")
 	public ResponseEntity<String> handleStatic(HttpServletRequest request) {
 		String fullPath = request.getRequestURI();
-		return honoApp.staticResource(fullPath);
+		return honoAppClient.staticResource(fullPath);
 	}
 }
