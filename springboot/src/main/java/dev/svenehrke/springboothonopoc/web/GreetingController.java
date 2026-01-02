@@ -1,15 +1,11 @@
 package dev.svenehrke.springboothonopoc.web;
 
-import dev.svenehrke.springboothonopoc.core.PeopleService;
-import dev.svenehrke.springboothonopoc.core.Person;
 import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,32 +14,12 @@ import java.util.Map;
  * - Step 2: Forward HTTP request to HONO
  */
 @Controller
-public class UIController {
+public class GreetingController {
 
-	public static final String PEOPLE_URL = "/people";
-
-	private final PeopleService peopleService;
 	private final HonoAppClient honoAppClient;
 
-	public UIController(
-		PeopleService peopleService,
-		HonoAppClient honoAppClient
-	) {
-		this.peopleService = peopleService;
+	public GreetingController(HonoAppClient honoAppClient) {
 		this.honoAppClient = honoAppClient;
-	}
-
-	@GetMapping("/")
-	public RedirectView index() {
-		return new RedirectView(PEOPLE_URL);
-	}
-
-	public record PeopleVM(List<Person> people){};
-
-	@GetMapping(PEOPLE_URL)
-	public ResponseEntity<String> people() {
-		var people = peopleService.people();
-		return honoAppClient.post(PEOPLE_URL, new PeopleVM(people));
 	}
 
 	@GetMapping("/greeting")
