@@ -6,12 +6,14 @@ import {devService} from "./dev_service";
 function init(hono: Hono) {
 
 	hono.get(mainpage.URL, async (c) => {
-		return c.html(await callPostEndpoint<MainPageVM>(
-			c.req.url, {people: devService.people()})
-		);
+		const vm = {people: devService.people()};
+		return c.html(await callPostEndpoint<MainPageVM>(c.req.url, vm));
 	});
 }
 
-export const dev_api = {
+/**
+ * Simulation of SpringBoot App
+ */
+export const devapp = {
 	init,
 }

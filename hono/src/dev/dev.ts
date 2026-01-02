@@ -1,8 +1,8 @@
 import {Hono} from "hono";
-import {dev_api} from "./dev_api";
+import {devapp} from "./devapp";
 
 function init(hono: Hono) {
-	dev_api.init(hono);
+	devapp.init(hono);
 }
 
 export const dev = {
