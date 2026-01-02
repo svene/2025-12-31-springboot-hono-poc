@@ -1,8 +1,9 @@
 import {Hono} from "hono";
-export const URL = '/people';
+export const URL = '/greeting';
 
 function init(hono: Hono) {
 	hono.get(URL, (c) => {
+		const greetee = c.req.query('greetee') ?? '-';
 		return c.render(
 			<html lang="en">
 			<head>
@@ -11,12 +12,7 @@ function init(hono: Hono) {
 
 			<body>
 			<div>
-				<h1>Application</h1>
-				<ul>
-					<li><a href="/greeting?greetee=You" target="_blank">Greeting</a></li>
-				</ul>
-
-				<a href="/logout">Logout</a>
+				<div>Hello {greetee} !</div>
 			</div>
 			</body>
 			</html>
@@ -24,7 +20,7 @@ function init(hono: Hono) {
 	});
 }
 
-export const mainpage = {
+export const greeting = {
 	URL,
 	init,
 }

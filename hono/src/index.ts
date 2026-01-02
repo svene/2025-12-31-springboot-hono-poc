@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
-import {mainpage} from "./mainpage";
+import {app} from "./app";
 
-const app = new Hono()
+const hono = new Hono()
 
-mainpage.init(app);
+app.init(hono);
 
-export default app
+export default hono
