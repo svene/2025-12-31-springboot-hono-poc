@@ -1,5 +1,5 @@
 import {Hono} from "hono";
-import {PeopleSchema, Person} from "../ui/model";
+import {Person} from "../ui/model";
 import {BulmaPage} from "../ui/components/bulmapage";
 
 const URL = '/people';
@@ -34,9 +34,8 @@ function ui(vm: VM) {
 
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
-		const json = await c.req.json();
-		const data = PeopleSchema.parse(json);
-		return c.render(ui(data as VM));
+		const vm = await c.req.json() as VM;
+		return c.render(ui(vm));
 	});
 }
 
