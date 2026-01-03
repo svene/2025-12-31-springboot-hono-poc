@@ -9,4 +9,7 @@ export const PeopleSchema = z.object({
 	people: z.array(PersonSchema),
 });
 
-export type Person = z.infer<typeof PersonSchema>;
+export type Person = {
+	firstName: string,
+	lastName: string,
+}
