@@ -24,6 +24,8 @@ function ui(vm: PersonPageModel) {
 						</tr>
 					))}
 				</table>
+
+				<div>Count: {vm.table.people.length}/{vm.total}</div>
 			</>
 		</MpaLayout>
 	);
@@ -36,7 +38,7 @@ function init(hono: Hono) {
 	});
 }
 
-export const peoplepage = {
+export const personpage = {
 	URL,
 	init,
 }

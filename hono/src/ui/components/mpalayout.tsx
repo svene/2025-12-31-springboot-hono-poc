@@ -1,5 +1,5 @@
 import type { ComponentChildren } from 'hono/jsx'
-import {peoplepage} from "../../app/peoplepage";
+import {personpage} from "../../app/personpage";
 import {infopage} from "../../app/infopage";
 
 export const MpaLayout = (props: {selectedMenu: string, children: ComponentChildren }) => (
@@ -22,7 +22,7 @@ export const MpaLayout = (props: {selectedMenu: string, children: ComponentChild
 		<nav className="navbar" role="navigation" aria-label="main navigation">
 			<div className="navbar-menu">
 				<div className="navbar-start">
-					<a class={`navbar-item ${props.selectedMenu === 'people' ? 'is-selected' : ''}`} href={peoplepage.URL}>People</a>
+					<a class={`navbar-item ${props.selectedMenu === 'people' ? 'is-selected' : ''}`} href={personpage.URL}>People</a>
 					<a class={`navbar-item ${props.selectedMenu === 'info' ? 'is-selected' : ''}`} href={infopage.URL}>Info</a>
 				</div>
 			</div>

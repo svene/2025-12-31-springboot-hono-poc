@@ -12,8 +12,12 @@ public class PeopleService {
 		this.peopleRepository = peopleRepository;
 	}
 
-	public PersonTableModel people() {
+	public PersonTableModel personTableModel() {
         return peopleRepository.people();
+    }
+
+	public int total() {
+        return peopleRepository.total();
     }
 
 }

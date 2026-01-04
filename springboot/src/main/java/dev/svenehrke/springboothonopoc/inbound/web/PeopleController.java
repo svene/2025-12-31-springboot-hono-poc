@@ -30,7 +30,10 @@ public class PeopleController {
 
 	@GetMapping(PEOPLE_URL)
 	public ResponseEntity<String> people() {
-		var vm = new PersonPageModel(peopleService.people());
+		var vm = new PersonPageModel(
+			peopleService.personTableModel(),
+			peopleService.total()
+		);
 		return honoAppClient.post(PEOPLE_URL, vm);
 	}
 
