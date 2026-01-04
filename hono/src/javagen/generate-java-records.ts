@@ -18,6 +18,10 @@ function map(type: Type): string {
 		return `List<${map(type.getArrayElementTypeOrThrow())}>`;
 	}
 
+	const aliasSymbol = type.getAliasSymbol();
+	if (aliasSymbol) {
+		return aliasSymbol.getName();
+	}
 	const symbol = type.getSymbol();
 	if (symbol) return symbol.getName();
 
@@ -34,9 +38,8 @@ for (const alias of source.getTypeAliases()) {
 	const needsList = fields.some(f => f.includes("List<"));
 
 	const java = `
-${needsList ? "import java.util.List;\n" : ""}
 package ${javaPackage};
-
+${needsList ? "import java.util.List;\n" : "\n"}
 public record ${name}(
 ${fields.join(",\n")}
 ) {}

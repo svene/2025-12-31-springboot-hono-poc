@@ -1,14 +1,10 @@
 import {Hono} from "hono";
-import {Person} from "../ui/model";
+import {MainPageVM} from "../ui/model";
 import {BulmaPage} from "../ui/components/bulmapage";
 
 const URL = '/people';
 
-export type VM = {
-	people: Person[],
-}
-
-function ui(vm: VM) {
+function ui(vm: MainPageVM) {
 	return (
 		<BulmaPage>
 			<>
