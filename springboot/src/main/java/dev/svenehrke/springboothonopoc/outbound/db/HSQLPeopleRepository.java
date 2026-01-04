@@ -22,7 +22,7 @@ public class HSQLPeopleRepository implements PeopleRepository {
 
 	@Override
 	public PersonTableModel people() {
-		var sql = "select firstname, lastname, streetname from Person";
+		var sql = "select firstname, lastname, streetname from Person limit 20";
 		List<PersonTableRowModel> result = jdbcClient.sql(sql).query(
 			(rs, rowNum) -> new PersonTableRowModel(rs.getString("firstname"), rs.getString("lastname"), rs.getString("streetname"))
 		).list();

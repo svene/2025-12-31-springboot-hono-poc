@@ -25,7 +25,7 @@ function ui(vm: PersonPageModel) {
 					))}
 				</table>
 
-				<div>Count: {vm.table.people.length}/{vm.total}</div>
+				<div>{vm.table.people.length} of total {vm.total}</div>
 			</>
 		</MpaLayout>
 	);

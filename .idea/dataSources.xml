@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1 [DEBUG]" group="​Application" uuid="86f6f685-caeb-4d79-8b6c-66b25804aafc">
+    <data-source source="LOCAL" name="jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1 [DEBUG]" group="​Application" uuid="c77fbf39-b373-4164-9491-0052733efb54">
       <driver-ref>hsqldb.local</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
