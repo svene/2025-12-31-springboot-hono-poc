@@ -1,11 +1,10 @@
 import {Hono} from "hono";
-import {PeoplePageVM} from "./peoplepage-vm";
+import {PersonPageModel} from "./person-page-model-vm";
 import {MpaLayout} from "../ui/components/mpalayout";
 
 const URL = '/people';
 
-function ui(vm: PeoplePageVM) {
-	console.log(vm);
+function ui(vm: PersonPageModel) {
 	return (
 		<MpaLayout selectedMenu="people">
 			<>
@@ -17,7 +16,7 @@ function ui(vm: PeoplePageVM) {
 						<th>Street</th>
 					</tr>
 					</thead>
-					{vm.people.map((it) => (
+					{vm.table.people.map((it) => (
 						<tr>
 							<td>{it.firstName}</td>
 							<td>{it.lastName}</td>
@@ -32,7 +31,7 @@ function ui(vm: PeoplePageVM) {
 
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
-		const vm = await c.req.json() as PeoplePageVM;
+		const vm = await c.req.json() as PersonPageModel;
 		return c.render(ui(vm));
 	});
 }

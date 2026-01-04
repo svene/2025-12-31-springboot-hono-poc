@@ -1,4 +1,4 @@
-package dev.svenehrke.springboothonopoc.web;
+package dev.svenehrke.springboothonopoc.inbound.web;
 
 import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import jakarta.servlet.http.HttpServletRequest;

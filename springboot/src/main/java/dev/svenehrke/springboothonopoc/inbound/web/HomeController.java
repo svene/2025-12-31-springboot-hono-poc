@@ -1,10 +1,10 @@
-package dev.svenehrke.springboothonopoc.web;
+package dev.svenehrke.springboothonopoc.inbound.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import static dev.svenehrke.springboothonopoc.web.PeopleController.PEOPLE_URL;
+import static dev.svenehrke.springboothonopoc.inbound.web.PeopleController.PEOPLE_URL;
 
 @Controller
 public class HomeController {

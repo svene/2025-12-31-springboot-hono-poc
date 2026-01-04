@@ -1,13 +1,11 @@
-package dev.svenehrke.springboothonopoc.web;
+package dev.svenehrke.springboothonopoc.inbound.web;
 
-import dev.svenehrke.springboothonopoc.core.PeoplePageVM;
+import dev.svenehrke.springboothonopoc.core.PersonPageModel;
 import dev.svenehrke.springboothonopoc.core.PeopleService;
 import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
 
 /**
  * General Forwarding Pattern (Spring -> Hono):
@@ -32,9 +30,8 @@ public class PeopleController {
 
 	@GetMapping(PEOPLE_URL)
 	public ResponseEntity<String> people() {
-		var people = peopleService.people();
-		return honoAppClient.post(PEOPLE_URL, new PeoplePageVM(people));
+		var vm = new PersonPageModel(peopleService.people());
+		return honoAppClient.post(PEOPLE_URL, vm);
 	}
-
 
 }

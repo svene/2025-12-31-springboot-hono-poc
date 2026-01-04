@@ -1,4 +1,4 @@
-package dev.svenehrke.springboothonopoc.web;
+package dev.svenehrke.springboothonopoc.infra;
 
 
 import org.springframework.context.annotation.Bean;

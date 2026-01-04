@@ -1,4 +1,4 @@
-package dev.svenehrke.springboothonopoc.web;
+package dev.svenehrke.springboothonopoc.core;
 
 public class HelloService {
     public String hello() {
