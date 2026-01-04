@@ -8,6 +8,7 @@ function people(): Person[] {
 		return ({
 			firstName: `Firstname ${id}`,
 			lastName: `Lastname ${id}`,
+			streetName: `Street ${id}`,
 		});
 	});
 }

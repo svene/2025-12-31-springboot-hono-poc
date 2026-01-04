@@ -13,7 +13,13 @@ public class PeopleService {
         Faker faker = new Faker(new Random(0));
         return Stream.generate(() -> {
                 var name = faker.name();
-                return new Person(name.firstName(), name.lastName());
+                var address = faker.address();
+                System.out.println("---");
+                System.out.println(address.streetName());
+                System.out.println(address.streetAddressNumber());
+                System.out.println(address.zipCode());
+                System.out.println(address.city());
+                return new Person(name.firstName(), name.lastName(), address.streetName());
 			})
             .limit(20)
             .toList();
