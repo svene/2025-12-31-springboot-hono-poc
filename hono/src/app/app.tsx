@@ -1,6 +1,7 @@
 import {Hono} from "hono";
 import { serveStatic } from 'hono/bun';
 import {peoplepage} from "./peoplepage";
+import {infopage} from "./infopage";
 import {greeting} from "./greeting";
 
 function init(hono: Hono) {
@@ -9,6 +10,7 @@ function init(hono: Hono) {
 		return c.redirect(peoplepage.URL);
 	});
 	peoplepage.init(hono);
+	infopage.init(hono);
 	greeting.init(hono);
 }
 
