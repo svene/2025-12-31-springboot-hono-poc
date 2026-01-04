@@ -1,12 +1,12 @@
 import {Hono} from "hono";
 import {MainPageVM} from "../ui/model";
-import {BulmaPage} from "../ui/components/bulmapage";
+import {MpaLayout} from "../ui/components/mpalayout";
 
 const URL = '/people';
 
 function ui(vm: MainPageVM) {
 	return (
-		<BulmaPage>
+		<MpaLayout selectedMenu="people">
 			<>
 				<h1 class="title">Application</h1>
 				<table class="table">
@@ -24,13 +24,13 @@ function ui(vm: MainPageVM) {
 					))}
 				</table>
 			</>
-		</BulmaPage>
+		</MpaLayout>
 	);
 }
 
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
-		const vm = await c.req.json() as VM;
+		const vm = await c.req.json() as MainPageVM;
 		return c.render(ui(vm));
 	});
 }

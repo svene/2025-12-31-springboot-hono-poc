@@ -6,8 +6,8 @@ import {devService} from "./dev_service";
 function init(hono: Hono) {
 
 	hono.get(mainpage.URL, async (c) => {
-		const vm = {people: devService.people()};
-		return c.html(await callPostEndpoint<MainPageVM>(c.req.url, vm));
+		const vm: MainPageVM = {people: devService.people()};
+		return c.html(await callPostEndpoint(c.req.url, vm));
 	});
 }
 

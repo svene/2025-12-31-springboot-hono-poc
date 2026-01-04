@@ -1,4 +1,4 @@
-export async function callPostEndpoint<T>(url: string, vm: T): Promise<string> {
+export async function callPostEndpoint(url: string, vm: unknown): Promise<string> {
 	if (process.env.NODE_ENV !== 'development') {
 		throw new Error('postForHtml() must only be used in development')
 	}
