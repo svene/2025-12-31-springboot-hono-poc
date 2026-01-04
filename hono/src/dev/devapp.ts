@@ -7,7 +7,11 @@ import {PersonPageModel} from "../app/person-page-model-vm";
 function init(hono: Hono) {
 
 	hono.get(personpage.URL, async (c) => {
-		const vm: PersonPageModel = { table: {people: devService.people()}};
+		const people = devService.people();
+		const vm: PersonPageModel = {
+			table: {people},
+			total: people.length,
+		};
 		return c.html(await callPostEndpoint(c.req.url, vm));
 	});
 }
