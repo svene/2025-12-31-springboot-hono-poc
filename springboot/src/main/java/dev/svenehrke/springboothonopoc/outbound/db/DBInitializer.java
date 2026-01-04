@@ -1,21 +1,23 @@
 package dev.svenehrke.springboothonopoc.outbound.db;
 
 import jakarta.annotation.PostConstruct;
+import net.datafaker.Faker;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Random;
 
 @Component
 public class DBInitializer {
 	private final JdbcTemplate jdbcTemplate;
-	private final DataSourceTransactionManager dataSourceTransactionManager;
 
-	public DBInitializer(JdbcTemplate jdbcTemplate, DataSourceTransactionManager dataSourceTransactionManager) {
+	public DBInitializer(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
-		this.dataSourceTransactionManager = dataSourceTransactionManager;
 	}
 
 	@PostConstruct
+	@Transactional
 	public void init() {
 		System.out.println("DBInitializer.init");
 		Integer count = jdbcTemplate.queryForObject(
@@ -27,14 +29,14 @@ public class DBInitializer {
 			return;
 		}
 
-		jdbcTemplate.update(
-			"INSERT INTO Person (firstname, lastname, streetname) VALUES (?, ?, ?)",
-			"John", "Doe", "Main Street"
-		);
-		Integer count2 = jdbcTemplate.queryForObject(
-			"SELECT COUNT(*) FROM Person",
-			Integer.class
-		);
-		System.out.println("count2 = " + count2);
+		Faker faker = new Faker(new Random(0));
+		var name = faker.name();
+		var address = faker.address();
+		for (int i = 0; i < 20; i++) {
+			jdbcTemplate.update(
+				"INSERT INTO Person (firstname, lastname, streetname) VALUES (?, ?, ?)",
+				name.firstName(), name.lastName(), address.streetName()
+			);
+		}
 	}
 }
