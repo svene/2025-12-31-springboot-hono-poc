@@ -1,12 +1,13 @@
 import {Hono} from "hono";
 import {callPostEndpoint} from "./infra/dev_forwarder";
-import {mainpage, VM as MainPageVM} from "../app/mainpage";
+import {peoplepage} from "../app/peoplepage";
 import {devService} from "./dev_service";
+import {PeoplePageVM} from "../app/peoplepagevms";
 
 function init(hono: Hono) {
 
-	hono.get(mainpage.URL, async (c) => {
-		const vm: MainPageVM = {people: devService.people()};
+	hono.get(peoplepage.URL, async (c) => {
+		const vm: PeoplePageVM = {people: devService.people()};
 		return c.html(await callPostEndpoint(c.req.url, vm));
 	});
 }

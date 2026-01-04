@@ -1,15 +1,14 @@
 import {Hono} from "hono";
-import {MainPageVM} from "../ui/model";
+import {PeoplePageVM} from "./peoplepage-vm";
 import {MpaLayout} from "../ui/components/mpalayout";
 
 const URL = '/people';
 
-function ui(vm: MainPageVM) {
+function ui(vm: PeoplePageVM) {
 	console.log(vm);
 	return (
 		<MpaLayout selectedMenu="people">
 			<>
-				<h1 class="title">Application</h1>
 				<table class="table">
 					<thead>
 					<tr>
@@ -33,12 +32,12 @@ function ui(vm: MainPageVM) {
 
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
-		const vm = await c.req.json() as MainPageVM;
+		const vm = await c.req.json() as PeoplePageVM;
 		return c.render(ui(vm));
 	});
 }
 
-export const mainpage = {
+export const peoplepage = {
 	URL,
 	init,
 }

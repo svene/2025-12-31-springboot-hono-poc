@@ -1,14 +1,14 @@
 import {Hono} from "hono";
 import { serveStatic } from 'hono/bun';
-import {mainpage} from "./mainpage";
+import {peoplepage} from "./peoplepage";
 import {greeting} from "./greeting";
 
 function init(hono: Hono) {
 	hono.use('/static/*', serveStatic({ root: './' }))
 	hono.get('/', (c) => {
-		return c.redirect(mainpage.URL);
+		return c.redirect(peoplepage.URL);
 	});
-	mainpage.init(hono);
+	peoplepage.init(hono);
 	greeting.init(hono);
 }
 

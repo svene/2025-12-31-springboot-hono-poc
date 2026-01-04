@@ -1,6 +1,6 @@
 package dev.svenehrke.springboothonopoc.web;
 
-import dev.svenehrke.springboothonopoc.core.MainPageVM;
+import dev.svenehrke.springboothonopoc.core.PeoplePageVM;
 import dev.svenehrke.springboothonopoc.core.PeopleService;
 import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class PeopleController {
 	@GetMapping(PEOPLE_URL)
 	public ResponseEntity<String> people() {
 		var people = peopleService.people();
-		return honoAppClient.post(PEOPLE_URL, new MainPageVM(people));
+		return honoAppClient.post(PEOPLE_URL, new PeoplePageVM(people));
 	}
 
 

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 @Service
 public class PeopleService {
-    public List<Person> people() {
+    public List<PersonTableRowVM> people() {
         Faker faker = new Faker(new Random(0));
         return Stream.generate(() -> {
                 var name = faker.name();
@@ -19,7 +19,7 @@ public class PeopleService {
                 System.out.println(address.streetAddressNumber());
                 System.out.println(address.zipCode());
                 System.out.println(address.city());
-                return new Person(name.firstName(), name.lastName(), address.streetName());
+                return new PersonTableRowVM(name.firstName(), name.lastName(), address.streetName());
 			})
             .limit(20)
             .toList();
