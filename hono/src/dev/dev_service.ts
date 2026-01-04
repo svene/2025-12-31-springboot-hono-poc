@@ -1,12 +1,15 @@
 import {Person} from "../ui/model";
 
+const PEOPLE_COUNT = 20;
+
 function people(): Person[] {
-	return [
-		{firstName: 'John_dev', lastName: 'Lennon'},
-		{firstName: 'Paul_dev', lastName: 'McCartney'},
-		{firstName: 'George_dev', lastName: 'Harrison'},
-		{firstName: 'Ringo_dev', lastName: 'Starr'},
-	];
+	return Array.from({ length: PEOPLE_COUNT }, (_, idx) => {
+		const id = idx + 1;
+		return ({
+			firstName: `Firstname ${id}`,
+			lastName: `Lastname ${id}`,
+		});
+	});
 }
 
 export const devService = {
