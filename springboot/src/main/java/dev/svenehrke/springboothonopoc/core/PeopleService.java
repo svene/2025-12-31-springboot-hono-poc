@@ -1,28 +1,22 @@
 package dev.svenehrke.springboothonopoc.core;
 
-import net.datafaker.Faker;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Stream;
 
 @Service
 public class PeopleService {
-    public List<PersonTableRowVM> people() {
-        Faker faker = new Faker(new Random(0));
-        return Stream.generate(() -> {
-                var name = faker.name();
-                var address = faker.address();
-                System.out.println("---");
-                System.out.println(address.streetName());
-                System.out.println(address.streetAddressNumber());
-                System.out.println(address.zipCode());
-                System.out.println(address.city());
-                return new PersonTableRowVM(name.firstName(), name.lastName(), address.streetName());
-			})
-            .limit(20)
+    private final PeopleRepository peopleRepository;
+
+	public PeopleService(PeopleRepository peopleRepository) {
+		this.peopleRepository = peopleRepository;
+	}
+
+	public List<PersonTableRowVM> people() {
+        return peopleRepository.people().stream()
+            .map(it -> new PersonTableRowVM(it.name().firstName(), it.name().lastName(), it.address().streetName()))
             .toList();
 
     }
+
 }
