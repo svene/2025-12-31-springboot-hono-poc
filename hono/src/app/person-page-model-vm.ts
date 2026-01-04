@@ -1,4 +1,5 @@
 export type PersonTableRowModel = {
+	id: number,
 	firstName: string,
 	lastName: string,
 	streetName: string,

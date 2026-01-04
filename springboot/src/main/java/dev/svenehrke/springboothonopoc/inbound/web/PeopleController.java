@@ -6,6 +6,9 @@ import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Collections;
 
 /**
  * General Forwarding Pattern (Spring -> Hono):
@@ -35,6 +38,12 @@ public class PeopleController {
 			peopleService.total()
 		);
 		return honoAppClient.post(PEOPLE_URL, vm);
+	}
+
+	@GetMapping("/person/{id}/edit")
+	public ResponseEntity<String> people(@PathVariable int id) {
+		var vm = peopleService.personTableRowModel(id);
+		return honoAppClient.post("/person/edit", vm);
 	}
 
 }

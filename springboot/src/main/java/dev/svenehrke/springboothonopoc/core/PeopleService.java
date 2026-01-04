@@ -20,4 +20,8 @@ public class PeopleService {
         return peopleRepository.total();
     }
 
+	public PersonTableRowModel personTableRowModel(int id) {
+		return peopleRepository.personTableRowModel(id);
+	}
+
 }

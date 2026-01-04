@@ -22,9 +22,13 @@ public class HSQLPeopleRepository implements PeopleRepository {
 
 	@Override
 	public PersonTableModel people() {
-		var sql = "select firstname, lastname, streetname from Person limit 20";
+		var sql = "select id, firstname, lastname, streetname from Person limit 20";
 		List<PersonTableRowModel> result = jdbcClient.sql(sql).query(
-			(rs, rowNum) -> new PersonTableRowModel(rs.getString("firstname"), rs.getString("lastname"), rs.getString("streetname"))
+			(rs, rowNum) -> new PersonTableRowModel(
+				rs.getInt("id"),
+				rs.getString("firstname"),
+				rs.getString("lastname"),
+				rs.getString("streetname"))
 		).list();
 		return new PersonTableModel(result);
 	}
@@ -36,6 +40,21 @@ public class HSQLPeopleRepository implements PeopleRepository {
 			Integer.class
 		);
 		return count == null ? 0 : count;
+	}
+
+	@Override
+	public PersonTableRowModel personTableRowModel(int id) {
+		var sql = "select id, firstname, lastname, streetname from Person where id = ?";
+		PersonTableRowModel result = jdbcClient.sql(sql)
+			.param(id)
+			.query(
+			(rs, rowNum) -> new PersonTableRowModel(
+				rs.getInt("id"),
+				rs.getString("firstname"),
+				rs.getString("lastname"),
+				rs.getString("streetname"))
+		).single();
+		return result;
 	}
 
 }

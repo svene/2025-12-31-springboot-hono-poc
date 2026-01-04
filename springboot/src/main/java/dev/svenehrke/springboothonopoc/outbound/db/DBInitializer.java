@@ -32,6 +32,7 @@ public class DBInitializer {
 		Faker faker = new Faker(new Random(0));
 		var name = faker.name();
 		var address = faker.address();
+		System.out.println("loading initial data...");
 		for (int i = 0; i < 150; i++) {
 			jdbcTemplate.update(
 				"INSERT INTO Person (firstname, lastname, streetname) VALUES (?, ?, ?)",
