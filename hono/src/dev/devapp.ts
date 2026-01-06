@@ -1,8 +1,8 @@
 import {Hono} from "hono";
 import {callPostEndpoint} from "./infra/dev_forwarder";
-import {personpage} from "../app/personpage";
+import {personpage} from "../app/personpage/personpage";
 import {devService} from "./dev_service";
-import {PersonPageModel} from "../app/person-page-model-vm";
+import {PersonPageModel} from "../app/personpage/person-page-model-vm";
 
 function init(hono: Hono) {
 

@@ -1,6 +1,6 @@
 import {Hono} from "hono";
 import {PersonPageModel} from "./person-page-model-vm";
-import {MpaLayout} from "../ui/components/mpalayout";
+import {MpaLayout} from "../../ui/components/mpalayout";
 import {personedit} from "./personedit";
 
 const URL = '/people';

@@ -1,5 +1,5 @@
 import type { ComponentChildren } from 'hono/jsx'
-import {personpage} from "../../app/personpage";
+import {personpage} from "../../app/personpage/personpage";
 import {infopage} from "../../app/infopage";
 
 export const MpaLayout = (props: {selectedMenu: string, children: ComponentChildren }) => (

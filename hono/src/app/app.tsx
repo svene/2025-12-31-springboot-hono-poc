@@ -1,6 +1,6 @@
 import {Hono} from "hono";
 import { serveStatic } from 'hono/bun';
-import {personpage} from "./personpage";
+import {personpage} from "./personpage/personpage";
 import {infopage} from "./infopage";
 import {greeting} from "./greeting";
 
