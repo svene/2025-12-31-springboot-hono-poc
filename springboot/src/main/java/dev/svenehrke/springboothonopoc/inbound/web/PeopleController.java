@@ -41,9 +41,15 @@ public class PeopleController {
 	}
 
 	@GetMapping("/person/{id}/edit")
-	public ResponseEntity<String> people(@PathVariable int id) {
+	public ResponseEntity<String> edit(@PathVariable int id) {
 		var vm = peopleService.personTableRowModel(id);
 		return honoAppClient.post("/person/edit", vm);
+	}
+
+	@GetMapping("/person/{id}/details")
+	public ResponseEntity<String> details(@PathVariable int id) {
+		var vm = peopleService.personTableRowModel(id);
+		return honoAppClient.post("/person/details", vm);
 	}
 
 }
