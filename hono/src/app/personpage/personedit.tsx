@@ -5,9 +5,9 @@ const URL = '/person/edit';
 
 function ui(vm: PersonTableRowModel) {
 	return (
-		<tr hx-trigger="click" hx-target="this" hx-swap="outerHTML" hx-get={`/person/${vm.id}/row`}>
-			<td colSpan={4}>
-				<div class="card p-5">
+		<tr>
+			<td colSpan={4} style="padding: 0px">
+				<div class="card p-5 my-2">
 					<form>
 						<div class="fixed-grid">
 							<div class="grid">

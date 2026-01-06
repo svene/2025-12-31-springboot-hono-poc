@@ -5,9 +5,14 @@ const URL = '/person/details';
 
 function ui(vm: PersonTableRowModel) {
 	return (
-		<tr hx-trigger="click" hx-target="this" hx-swap="outerHTML" hx-get={`/person/${vm.id}/edit`}>
-			<td colspan={4}>
-				<div className="card p-5">
+		<tr
+			style="cursor: pointer"
+			hx-trigger="click"
+			hx-target="this"
+			hx-swap="outerHTML"
+			hx-get={`/person/${vm.id}/edit`}>
+			<td colspan={4} style="padding: 0px">
+				<div className="card p-5 my-2 mx-0">
 					<nav class="level">
 						<div className="level-left">
 							<div className="level-item">

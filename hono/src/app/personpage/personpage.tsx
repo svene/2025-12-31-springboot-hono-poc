@@ -29,7 +29,13 @@ function ui(vm: PersonPageModel) {
 					</thead>
 					<tbody>
 					{vm.table.people.map((it) => (
-						<tr hx-trigger="click" hx-target="this" hx-swap="outerHTML" hx-get={`/person/${it.id}/details`}>
+						<tr
+							style="cursor: pointer"
+							hx-trigger="click"
+							hx-target="this"
+							hx-swap="outerHTML"
+							hx-get={`/person/${it.id}/details`}
+						>
 							<td>{it.firstName}</td>
 							<td>{it.lastName}</td>
 							<td>{it.streetName}</td>

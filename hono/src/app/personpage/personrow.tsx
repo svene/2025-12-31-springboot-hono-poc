@@ -5,7 +5,12 @@ const URL = '/person/row';
 
 function ui(vm: PersonTableRowModel) {
 	return (
-		<tr hx-trigger="click" hx-target="this" hx-swap="outerHTML" hx-get={`/person/${vm.id}/details`}>
+		<tr
+			style="cursor: pointer"
+			hx-trigger="click consume"
+			hx-target="this"
+			hx-swap="outerHTML"
+			hx-get={`/person/${vm.id}/details`}>
 			<td>{vm.firstName}</td>
 			<td>{vm.lastName}</td>
 			<td>{vm.streetName}</td>
