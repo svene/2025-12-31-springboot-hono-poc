@@ -7,6 +7,7 @@ function ui(vm: PersonTableRowModel) {
 	return (
 		<tr>
 			<td colSpan={4}>
+				<div class="card p-5">
 				<form>
 					<div class="fixed-grid">
 						<div class="grid">
@@ -36,9 +37,12 @@ function ui(vm: PersonTableRowModel) {
 							</div>
 						</div>
 					</div>
+					<nav class="level">
+						<button class="level-item button">&lt; Back</button>
+						<button class="level-item button is-primary">Save</button>
+					</nav>
 				</form>
-				<button className="button">Save</button>
-				<button className="button">Cancel</button>
+				</div>
 			</td>
 		</tr>
 	);

@@ -7,11 +7,25 @@ function ui(vm: PersonTableRowModel) {
 	return (
 		<tr hx-trigger="click" hx-target="this" hx-swap="outerHTML" hx-get={`/person/${vm.id}/edit`}>
 			<td colspan={4}>
-				<div><span>Firstname: {vm.firstName}</span> <span>Lastname: {vm.lastName}</span></div>
-				<div>Street: {vm.streetName}</div>
+				<div className="card p-5">
+					<nav class="level">
+						<div className="level-left">
+							<div className="level-item">
+								<p className="title">{vm.firstName} {vm.lastName}</p>
+							</div>
+						</div>
+					</nav>
+					<nav class="level">
+						<div className="level-left">
+							<div className="level-item">
+								<p className="subtitle">{vm.streetName}</p>
+							</div>
+						</div>
+					</nav>
+				</div>
 			</td>
 		</tr>
-	);
+);
 }
 
 function init(hono: Hono) {

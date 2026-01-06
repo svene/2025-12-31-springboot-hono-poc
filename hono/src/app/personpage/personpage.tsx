@@ -11,9 +11,9 @@ function ui(vm: PersonPageModel) {
 		<MpaLayout selectedMenu="people">
 			<>
 				<div class="field">
-					<label class="label">Name</label>
+					<label class="label">Search</label>
 					<div class="control">
-						<input class="input" type="text" placeholder="Text input"/>
+						<input class="input" type="search" placeholder="Search for firstname or lastname"/>
 					</div>
 				</div>
 
