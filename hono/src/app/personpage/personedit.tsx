@@ -5,43 +5,57 @@ const URL = '/person/edit';
 
 function ui(vm: PersonTableRowModel) {
 	return (
-		<tr>
+		<tr hx-trigger="click" hx-target="this" hx-swap="outerHTML" hx-get={`/person/${vm.id}/row`}>
 			<td colSpan={4}>
 				<div class="card p-5">
-				<form>
-					<div class="fixed-grid">
-						<div class="grid">
-							<div class="cell">
-								<div class="field">
-									<label class="label">Firstname</label>
-									<div class="control">
-										<input class="input" type="text" value={vm.firstName}></input>
+					<form>
+						<div class="fixed-grid">
+							<div class="grid">
+								<div class="cell">
+									<div class="field">
+										<label class="label">Firstname</label>
+										<div class="control">
+											<input class="input" type="text" value={vm.firstName}></input>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="cell">
-								<div class="field">
-									<label class="label">Lastname</label>
-									<div class="control">
-										<input class="input" type="text" value={vm.lastName}></input>
+								<div class="cell">
+									<div class="field">
+										<label class="label">Lastname</label>
+										<div class="control">
+											<input class="input" type="text" value={vm.lastName}></input>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="cell">
-								<div class="field">
-									<label class="label">Street</label>
-									<div class="control">
-										<input class="input" type="text" value={vm.streetName}></input>
+								<div class="cell">
+									<div class="field">
+										<label class="label">Street</label>
+										<div class="control">
+											<input class="input" type="text" value={vm.streetName}></input>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<nav class="level">
-						<button class="level-item button">&lt; Back</button>
-						<button class="level-item button is-primary">Save</button>
-					</nav>
-				</form>
+						<nav class="level">
+							<button
+								class="level-item button"
+								hx-trigger="click consume"
+								hx-target="closest tr"
+								hx-swap="outerHTML"
+								hx-get={`/person/${vm.id}/details`}
+							>&lt; Back
+							</button>
+							<button
+								class="level-item button is-primary"
+								hx-trigger="click consume"
+								hx-target="closest tr"
+								hx-swap="outerHTML"
+								hx-get={`/person/${vm.id}/row`}
+							>Save
+							</button>
+						</nav>
+					</form>
 				</div>
 			</td>
 		</tr>

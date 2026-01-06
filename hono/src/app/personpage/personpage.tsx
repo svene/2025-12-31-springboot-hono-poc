@@ -3,6 +3,7 @@ import {PersonPageModel} from "./person-page-model-vm";
 import {MpaLayout} from "../../ui/components/mpalayout";
 import {personedit} from "./personedit";
 import {persondetails} from "./persondetails";
+import {personrow} from "./personrow";
 
 const URL = '/people';
 
@@ -54,6 +55,7 @@ function init(hono: Hono) {
 
 	personedit.init(hono);
 	persondetails.init(hono);
+	personrow.init(hono);
 }
 
 export const personpage = {

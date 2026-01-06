@@ -52,4 +52,10 @@ public class PeopleController {
 		return honoAppClient.post("/person/details", vm);
 	}
 
+	@GetMapping("/person/{id}/row")
+	public ResponseEntity<String> row(@PathVariable int id) {
+		var vm = peopleService.personTableRowModel(id);
+		return honoAppClient.post("/person/row", vm);
+	}
+
 }

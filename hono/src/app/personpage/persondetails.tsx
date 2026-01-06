@@ -22,10 +22,18 @@ function ui(vm: PersonTableRowModel) {
 							</div>
 						</div>
 					</nav>
+					<button
+						className="level-item button"
+						hx-trigger="click consume"
+						hx-target="closest tr"
+						hx-swap="outerHTML"
+						hx-get={`/person/${vm.id}/row`}
+					>&lt; Back
+					</button>
 				</div>
 			</td>
 		</tr>
-);
+	);
 }
 
 function init(hono: Hono) {
