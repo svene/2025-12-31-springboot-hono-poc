@@ -9,6 +9,7 @@ export const MpaLayout = (props: {selectedMenu: string, children: ComponentChild
 		<title>People Admin Application</title>
 		<script src="/static/js/htmx.org/2.0.8/htmx.js"></script>
 		<link rel="stylesheet" href="/static/css/bulma.min.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css "/>
 	</head>
 
 	<body>

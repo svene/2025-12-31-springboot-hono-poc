@@ -1,7 +1,7 @@
 import {Hono} from "hono";
-import {PersonPageModel, PersonTableRowModel} from "./person-page-model-vm";
+import {PersonPageModel} from "./person-page-model-vm";
 import {MpaLayout} from "../ui/components/mpalayout";
-import hono from "../index";
+import {personedit} from "./personedit";
 
 const URL = '/people';
 
@@ -15,6 +15,7 @@ function ui(vm: PersonPageModel) {
 						<th>Firstname</th>
 						<th>Lastname</th>
 						<th>Street</th>
+						<th>...</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -23,6 +24,9 @@ function ui(vm: PersonPageModel) {
 							<td>{it.firstName}</td>
 							<td>{it.lastName}</td>
 							<td>{it.streetName}</td>
+							<td>
+								<button class="button">Delete</button>
+							</td>
 						</tr>
 					))}
 					</tbody>
@@ -34,30 +38,13 @@ function ui(vm: PersonPageModel) {
 	);
 }
 
-function editUi(vm: PersonTableRowModel) {
-	return (
-		<tr>
-			<form>
-			<td><input class="input" type="text" value={vm.firstName}></input></td>
-			<td><input class="input" type="text" value={vm.lastName}></input></td>
-			<td><input class="input" type="text" value={vm.streetName}></input></td>
-			</form>
-		</tr>
-	);
-}
-
-
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
 		const vm = await c.req.json() as PersonPageModel;
 		return c.render(ui(vm));
 	});
 
-	hono.post('/person/edit', async (c) => {
-		const vm = await c.req.json() as PersonTableRowModel;
-		console.log(vm);
-		return c.render(editUi(vm));
-	});
+	personedit.init(hono);
 }
 
 export const personpage = {
