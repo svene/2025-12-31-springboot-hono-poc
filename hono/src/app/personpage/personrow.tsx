@@ -6,18 +6,15 @@ const URL = '/person/row';
 export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 	<tr
 		style="cursor: pointer"
-		hx-trigger="click consume"
+		hx-trigger="click"
 		hx-target="this"
 		hx-swap="outerHTML"
 		hx-get={`/person/${props.vm.id}/details`}
 	>
-		<td><input type="checkbox" name={props.vm.id + ''} onClick="{event.stopPropagation();}"></input></td>
+		<td hx-trigger="click consume"><input type="checkbox" name="selection" value={props.vm.id}></input></td>
 		<td>{props.vm.firstName}</td>
 		<td>{props.vm.lastName}</td>
 		<td>{props.vm.streetName}</td>
-		<td>
-			<button className="button">Delete</button>
-		</td>
 	</tr>
 
 );
