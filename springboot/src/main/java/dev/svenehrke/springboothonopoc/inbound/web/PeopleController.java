@@ -58,23 +58,6 @@ public class PeopleController {
 		return honoAppClient.post("/person/row", vm);
 	}
 
-/*
-	@DeleteMapping("/person/delete")
-	public ResponseEntity<String> deleteRows(@RequestParam List<Integer> selection) {
-		peopleService.deleteByIds(selection);
-		return people();
-	}
-*/
-
-/*
-	@DeleteMapping("/person/delete")
-	public RedirectView deleteRows2(@RequestParam List<Integer> selection, HttpServletRequest request, HttpServletResponse response) {
-		peopleService.deleteByIds(selection);
-		// make the browser redirect with a GET instead of a PUT/POST/DELETE:
-		request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.SEE_OTHER); // 303 (See Other) instead of 302 (Found)
-		return new RedirectView(PEOPLE_URL);
-	}
-*/
 	@DeleteMapping("/person/delete")
 	public ResponseEntity<String> deleteRows3(@RequestParam List<Integer> selection, HttpServletResponse response) {
 		peopleService.deleteByIds(selection);
