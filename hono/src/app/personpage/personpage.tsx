@@ -3,9 +3,13 @@ import {PersonPageModel} from "./person-page-model-vm";
 import {MpaLayout} from "../../ui/components/mpalayout";
 import {personedit} from "./personedit";
 import {persondetails} from "./persondetails";
-import {personrow} from "./personrow";
+import {PersonRow, personrow} from "./personrow";
 
 const URL = '/people';
+
+function x(e: MouseEvent) {
+	e.preventDefault();
+}
 
 function ui(vm: PersonPageModel) {
 	return (
@@ -17,10 +21,11 @@ function ui(vm: PersonPageModel) {
 						<input class="input" type="search" placeholder="Search for firstname or lastname"/>
 					</div>
 				</div>
-
-				<table class="table">
+				<form hx-post="/person/delete">
+				<table class="table" style="width: 100%">
 					<thead>
 					<tr>
+						<th></th>
 						<th>Firstname</th>
 						<th>Lastname</th>
 						<th>Street</th>
@@ -28,24 +33,10 @@ function ui(vm: PersonPageModel) {
 					</tr>
 					</thead>
 					<tbody>
-					{vm.table.people.map((it) => (
-						<tr
-							style="cursor: pointer"
-							hx-trigger="click"
-							hx-target="this"
-							hx-swap="outerHTML"
-							hx-get={`/person/${it.id}/details`}
-						>
-							<td>{it.firstName}</td>
-							<td>{it.lastName}</td>
-							<td>{it.streetName}</td>
-							<td>
-								<button class="button">Delete</button>
-							</td>
-						</tr>
-					))}
+					{vm.table.people.map((it) => (<PersonRow vm={it}/>))}
 					</tbody>
 				</table>
+				</form>
 
 				<div>{vm.table.people.length} of total {vm.total}</div>
 			</>

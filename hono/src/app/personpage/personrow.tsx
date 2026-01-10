@@ -3,21 +3,28 @@ import {PersonTableRowModel} from "./person-page-model-vm";
 
 const URL = '/person/row';
 
+export const PersonRow = (props: {vm: PersonTableRowModel}) => (
+	<tr
+		style="cursor: pointer"
+		hx-trigger="click consume"
+		hx-target="this"
+		hx-swap="outerHTML"
+		hx-get={`/person/${props.vm.id}/details`}
+	>
+		<td><input type="checkbox" name={props.vm.id + ''} onClick="{event.stopPropagation();}"></input></td>
+		<td>{props.vm.firstName}</td>
+		<td>{props.vm.lastName}</td>
+		<td>{props.vm.streetName}</td>
+		<td>
+			<button className="button">Delete</button>
+		</td>
+	</tr>
+
+);
+
 function ui(vm: PersonTableRowModel) {
 	return (
-		<tr
-			style="cursor: pointer"
-			hx-trigger="click consume"
-			hx-target="this"
-			hx-swap="outerHTML"
-			hx-get={`/person/${vm.id}/details`}>
-			<td>{vm.firstName}</td>
-			<td>{vm.lastName}</td>
-			<td>{vm.streetName}</td>
-			<td>
-				<button className="button">Delete</button>
-			</td>
-		</tr>
+		<PersonRow vm={vm}/>
 	);
 }
 
