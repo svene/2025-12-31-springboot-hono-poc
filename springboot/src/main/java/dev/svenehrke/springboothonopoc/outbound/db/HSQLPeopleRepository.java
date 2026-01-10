@@ -57,4 +57,10 @@ public class HSQLPeopleRepository implements PeopleRepository {
 		return result;
 	}
 
+	@Override
+	public int deleteByIds(List<Integer> ids) {
+		var sql = "delete from Person where id in (:ids)";
+		return jdbcClient.sql(sql).param("ids", ids).update();
+	}
+
 }

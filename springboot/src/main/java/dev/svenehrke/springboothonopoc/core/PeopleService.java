@@ -3,6 +3,8 @@ package dev.svenehrke.springboothonopoc.core;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 public class PeopleService {
@@ -22,6 +24,11 @@ public class PeopleService {
 
 	public PersonTableRowModel personTableRowModel(int id) {
 		return peopleRepository.personTableRowModel(id);
+	}
+
+	@Transactional
+	public int deleteByIds(List<Integer> ids) {
+		return peopleRepository.deleteByIds(ids);
 	}
 
 }

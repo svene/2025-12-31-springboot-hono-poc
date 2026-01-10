@@ -20,6 +20,7 @@ public class SecurityConfig {
 				.anyRequest().authenticated()       // everything requires login
 			)
 			.formLogin(login -> login.defaultSuccessUrl("/", true))   // ALWAYS go to homepage after login
+			.csrf(csrf -> csrf.disable()) // otherwise HTTP-DELETE requests will be rejected. TODO: properly handle CSRF
 			.logout(LogoutConfigurer::permitAll);
 
 		return http.build();

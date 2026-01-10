@@ -21,21 +21,21 @@ function ui(vm: PersonPageModel) {
 						<input class="input" type="search" placeholder="Search for firstname or lastname"/>
 					</div>
 				</div>
-				<form hx-post="/person/delete">
-				<table class="table" style="width: 100%">
-					<thead>
-					<tr>
-						<th></th>
-						<th>Firstname</th>
-						<th>Lastname</th>
-						<th>Street</th>
-						<th></th>
-					</tr>
-					</thead>
-					<tbody>
-					{vm.table.people.map((it) => (<PersonRow vm={it}/>))}
-					</tbody>
-				</table>
+				<form id="person-form" hx-delete="/person/delete">
+					<button type="submit" className="button">Delete</button>
+					<table class="table">
+						<thead>
+						<tr>
+							<th></th>
+							<th>Firstname</th>
+							<th>Lastname</th>
+							<th>Street</th>
+						</tr>
+						</thead>
+						<tbody>
+						{vm.table.people.map((it) => (<PersonRow vm={it}/>))}
+						</tbody>
+					</table>
 				</form>
 
 				<div>{vm.table.people.length} of total {vm.total}</div>

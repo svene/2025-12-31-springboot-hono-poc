@@ -3,12 +3,12 @@ package dev.svenehrke.springboothonopoc.inbound.web;
 import dev.svenehrke.springboothonopoc.core.PersonPageModel;
 import dev.svenehrke.springboothonopoc.core.PeopleService;
 import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
+import java.util.List;
 
 /**
  * General Forwarding Pattern (Spring -> Hono):
@@ -56,6 +56,30 @@ public class PeopleController {
 	public ResponseEntity<String> row(@PathVariable int id) {
 		var vm = peopleService.personTableRowModel(id);
 		return honoAppClient.post("/person/row", vm);
+	}
+
+/*
+	@DeleteMapping("/person/delete")
+	public ResponseEntity<String> deleteRows(@RequestParam List<Integer> selection) {
+		peopleService.deleteByIds(selection);
+		return people();
+	}
+*/
+
+/*
+	@DeleteMapping("/person/delete")
+	public RedirectView deleteRows2(@RequestParam List<Integer> selection, HttpServletRequest request, HttpServletResponse response) {
+		peopleService.deleteByIds(selection);
+		// make the browser redirect with a GET instead of a PUT/POST/DELETE:
+		request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.SEE_OTHER); // 303 (See Other) instead of 302 (Found)
+		return new RedirectView(PEOPLE_URL);
+	}
+*/
+	@DeleteMapping("/person/delete")
+	public ResponseEntity<String> deleteRows3(@RequestParam List<Integer> selection, HttpServletResponse response) {
+		peopleService.deleteByIds(selection);
+		response.setHeader("HX-Redirect", PEOPLE_URL);
+		return people();
 	}
 
 }
