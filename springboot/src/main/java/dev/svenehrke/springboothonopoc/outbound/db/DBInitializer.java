@@ -32,11 +32,18 @@ public class DBInitializer {
 		Faker faker = new Faker(new Random(0));
 		var name = faker.name();
 		var address = faker.address();
+		var phone = faker.phoneNumber();
 		System.out.println("loading initial data...");
 		for (int i = 0; i < 150; i++) {
-			jdbcTemplate.update(
-				"INSERT INTO Person (firstname, lastname, streetname) VALUES (?, ?, ?)",
-				name.firstName(), name.lastName(), address.streetName()
+			jdbcTemplate.update("""
+					INSERT INTO
+					Person(firstname, lastname, streetname, zipcode, city, country, mailbox, phonenumber, cellphone)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+					""",
+				name.firstName(), name.lastName(), address.streetName(),
+				address.zipCode(), address.city(), address.country(),
+				address.mailBox(),
+				phone.phoneNumber(), phone.cellPhone()
 			);
 		}
 	}

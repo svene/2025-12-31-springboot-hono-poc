@@ -1,9 +1,9 @@
 import {Hono} from "hono";
-import {PersonTableRowModel} from "./person-page-model-vm";
+import {PersonDetailModel, PersonTableRowModel} from "./person-page-model-vm";
 
 const URL = '/person/details';
 
-function ui(vm: PersonTableRowModel) {
+function ui(vm: PersonDetailModel) {
 	return (
 		<tr
 			style="cursor: pointer"
@@ -44,7 +44,7 @@ function ui(vm: PersonTableRowModel) {
 
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
-		const vm = await c.req.json() as PersonTableRowModel;
+		const vm = await c.req.json() as PersonDetailModel;
 		return c.render(ui(vm));
 	});
 }

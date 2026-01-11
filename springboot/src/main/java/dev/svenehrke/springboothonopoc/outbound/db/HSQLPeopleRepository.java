@@ -1,9 +1,6 @@
 package dev.svenehrke.springboothonopoc.outbound.db;
 
-import dev.svenehrke.springboothonopoc.core.PeopleRepository;
-import dev.svenehrke.springboothonopoc.core.PersonEditModel;
-import dev.svenehrke.springboothonopoc.core.PersonTableModel;
-import dev.svenehrke.springboothonopoc.core.PersonTableRowModel;
+import dev.svenehrke.springboothonopoc.core.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
@@ -77,6 +74,24 @@ public class HSQLPeopleRepository implements PeopleRepository {
 				rs.getString("firstname"),
 				rs.getString("lastname"),
 				rs.getString("streetname"))
+		).single();
+		return result;
+	}
+
+	@Override
+	public PersonDetailModel personTableDetailModel(int id) {
+		var sql = """
+			select id, firstname, lastname, streetname from Person where id = ?
+			""";
+		PersonDetailModel result = jdbcClient.sql(sql)
+			.param(id)
+			.query(
+			(rs, rowNum) -> new PersonDetailModel(
+				rs.getInt("id"),
+				rs.getString("firstname"),
+				rs.getString("lastname"),
+				rs.getString("streetname")
+			)
 		).single();
 		return result;
 	}

@@ -30,6 +30,10 @@ public class PeopleService {
 		return peopleRepository.personTableRowModel(id);
 	}
 
+	public PersonDetailModel personTableDetailModel(int id) {
+		return peopleRepository.personTableDetailModel(id);
+	}
+
 	@Transactional
 	public int deleteByIds(List<Integer> ids) {
 		return peopleRepository.deleteByIds(ids);

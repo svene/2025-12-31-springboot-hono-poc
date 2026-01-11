@@ -13,6 +13,13 @@ export type PersonPageModel = {
 	table: PersonTableModel,
 }
 
+export type PersonDetailModel = {
+	id: number,
+	firstName: string,
+	lastName: string,
+	streetName: string,
+}
+
 export type PersonEditModel = {
 	id: number,
 	firstName: string,
