@@ -7,6 +7,7 @@ import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
 public class PeopleController {
 
 	public static final String PEOPLE_URL = "/people";
+	public static final String PERSON_TABLE_URL = "/persontable";
 
 	private final PeopleService peopleService;
 	private final HonoAppClient honoAppClient;
@@ -33,12 +35,15 @@ public class PeopleController {
 	}
 
 	@GetMapping(PEOPLE_URL)
-	public ResponseEntity<String> people() {
-		var vm = new PersonPageModel(
-			peopleService.personTableModel(),
-			peopleService.total()
-		);
-		return honoAppClient.post(PEOPLE_URL, vm);
+	public ResponseEntity<String> people(@RequestParam(required = false) String search) {
+		if (StringUtils.hasLength(search)) {
+			var vm = peopleService.peopleForSearch(search);
+			return honoAppClient.post(PERSON_TABLE_URL, vm);
+		} else {
+			var vm = new PersonPageModel(peopleService.personTableModel(), peopleService.total());
+			return honoAppClient.post(PEOPLE_URL, vm);
+
+		}
 	}
 
 	@GetMapping("/person/{id}/edit")
@@ -63,7 +68,7 @@ public class PeopleController {
 	public ResponseEntity<String> deleteRows(@RequestParam List<Integer> selection, HttpServletResponse response) {
 		peopleService.deleteByIds(selection);
 		response.setHeader("HX-Redirect", PEOPLE_URL);
-		return people();
+		return people(null);
 	}
 
 	@PutMapping("/person/{id}")
@@ -71,7 +76,7 @@ public class PeopleController {
 		System.out.println("personEditModel = " + personEditModel.toString());
 		response.setHeader("HX-Redirect", PEOPLE_URL);
 		peopleService.updatePerson(id, personEditModel);
-		return people();
+		return people(null);
 	}
 
 }

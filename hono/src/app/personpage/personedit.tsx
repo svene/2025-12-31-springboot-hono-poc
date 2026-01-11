@@ -1,9 +1,9 @@
 import {Hono} from "hono";
-import {PersonTableRowModel} from "./person-page-model-vm";
+import {PersonEditModel} from "./person-page-model-vm";
 
 const URL = '/person/edit';
 
-function ui(vm: PersonTableRowModel) {
+function ui(vm: PersonEditModel) {
 	return (
 		<tr>
 			<td colSpan={4} style="padding: 0px">
@@ -65,7 +65,7 @@ function ui(vm: PersonTableRowModel) {
 
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
-		const vm = await c.req.json() as PersonTableRowModel;
+		const vm = await c.req.json() as PersonEditModel;
 		return c.render(ui(vm));
 	});
 }

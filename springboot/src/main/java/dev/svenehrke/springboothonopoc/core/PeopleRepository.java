@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface PeopleRepository {
     PersonTableModel people();
+    PersonTableModel peopleForSearch(String search);
     int total();
     PersonTableRowModel personTableRowModel(int id);
     int deleteByIds(List<Integer> ids);

@@ -18,6 +18,10 @@ public class PeopleService {
         return peopleRepository.people();
     }
 
+	public PersonTableModel peopleForSearch(String search) {
+        return peopleRepository.peopleForSearch(search);
+    }
+
 	public int total() {
         return peopleRepository.total();
     }

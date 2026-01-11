@@ -6,6 +6,7 @@ import {greeting} from "./greeting";
 import {personedit} from "./personpage/personedit";
 import {persondetails} from "./personpage/persondetails";
 import {personrow} from "./personpage/personrow";
+import {persontable} from "./personpage/persontable";
 
 function init(hono: Hono) {
 	hono.use('/static/*', serveStatic({ root: './' }))
@@ -15,6 +16,7 @@ function init(hono: Hono) {
 	personedit.init(hono);
 	persondetails.init(hono);
 	personrow.init(hono);
+	persontable.init(hono);
 	personpage.init(hono);
 	infopage.init(hono);
 	greeting.init(hono);

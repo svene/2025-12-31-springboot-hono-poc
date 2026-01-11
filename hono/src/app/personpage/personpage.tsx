@@ -1,7 +1,7 @@
 import {Hono} from "hono";
 import {PersonPageModel} from "./person-page-model-vm";
 import {MpaLayout} from "../../ui/components/mpalayout";
-import {PersonRow} from "./personrow";
+import {PersonTable} from "./persontable";
 
 const URL = '/people';
 
@@ -12,31 +12,18 @@ function ui(vm: PersonPageModel) {
 				<div class="field">
 					<label class="label">Search</label>
 					<div class="control">
-						<input class="input" type="search" placeholder="Search for firstname or lastname"/>
+						<input
+							class="input"
+							type="search"
+							name="search"
+							placeholder="Search for firstname or lastname"
+							hx-trigger="input changed delay:500ms"
+							hx-get="/people"
+							hx-target="#result-table"
+						/>
 					</div>
 				</div>
-					<table class="table">
-						<thead>
-						<tr>
-							<td colSpan={4}>
-								<form id="bulkDeleteForm" hx-delete="/person/delete">
-									<button type="submit" class="button">Delete</button>
-								</form>
-							</td>
-						</tr>
-						<tr>
-							<th></th>
-							<th>Firstname</th>
-							<th>Lastname</th>
-							<th>Street</th>
-						</tr>
-						</thead>
-						<tbody>
-						{vm.table.people.map((it) => (<PersonRow vm={it}/>))}
-						</tbody>
-					</table>
-
-
+				<PersonTable vm={vm.table}></PersonTable>
 				<div>{vm.table.people.length} of total {vm.total}</div>
 			</>
 		</MpaLayout>

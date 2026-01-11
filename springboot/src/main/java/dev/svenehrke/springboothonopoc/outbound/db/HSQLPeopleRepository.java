@@ -35,6 +35,28 @@ public class HSQLPeopleRepository implements PeopleRepository {
 	}
 
 	@Override
+	public PersonTableModel peopleForSearch(String search) {
+		var sql = """
+			select id, firstname, lastname, streetname
+			from Person
+			where
+				firstname like (:search)
+				or lastname like (:search)
+				or streetname like (:search)
+			""";
+		List<PersonTableRowModel> result = jdbcClient.sql(sql)
+			.param("search", "%" + search + "%")
+			.query(
+			(rs, rowNum) -> new PersonTableRowModel(
+				rs.getInt("id"),
+				rs.getString("firstname"),
+				rs.getString("lastname"),
+				rs.getString("streetname"))
+		).list();
+		return new PersonTableModel(result);
+	}
+
+	@Override
 	public int total() {
 		Integer count = jdbcTemplate.queryForObject(
 			"SELECT COUNT(*) FROM Person",
