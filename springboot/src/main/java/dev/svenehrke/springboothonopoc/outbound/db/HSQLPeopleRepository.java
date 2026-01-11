@@ -1,6 +1,7 @@
 package dev.svenehrke.springboothonopoc.outbound.db;
 
 import dev.svenehrke.springboothonopoc.core.PeopleRepository;
+import dev.svenehrke.springboothonopoc.core.PersonEditModel;
 import dev.svenehrke.springboothonopoc.core.PersonTableModel;
 import dev.svenehrke.springboothonopoc.core.PersonTableRowModel;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -61,6 +62,17 @@ public class HSQLPeopleRepository implements PeopleRepository {
 	public int deleteByIds(List<Integer> ids) {
 		var sql = "delete from Person where id in (:ids)";
 		return jdbcClient.sql(sql).param("ids", ids).update();
+	}
+
+	@Override
+	public int updatePerson(int id, PersonEditModel personEditModel) {
+		var sql = "update Person set firstname = (:firstname), lastname = (:lastname), streetname = (:streetname) where id = (:id)";
+		return jdbcClient.sql(sql)
+			.param("firstname", personEditModel.firstName())
+			.param("lastname", personEditModel.lastName())
+			.param("streetname", personEditModel.streetName())
+			.param("id", id)
+			.update();
 	}
 
 }

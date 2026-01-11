@@ -6,9 +6,9 @@ export const BulmaPage = (props: { children: ComponentChildren }) => (
 	{HEAD}
 
 	<body>
-	<div className="container mt-1">
+	<div class="container mt-1">
 
-		<div className="p-1 mt-1">
+		<div class="p-1 mt-1">
 			{props.children}
 		</div>
 

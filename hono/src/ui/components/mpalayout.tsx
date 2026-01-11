@@ -14,23 +14,23 @@ export const MpaLayout = (props: {selectedMenu: string, children: ComponentChild
 	</head>
 
 	<body>
-	<section className="hero is-link">
-		<div className="hero-body">
-			<p className="title">People Admin Application</p>
+	<section class="hero is-link">
+		<div class="hero-body">
+			<p class="title">People Admin Application</p>
 		</div>
 	</section>
 
-	<div className="container mt-1">
-		<nav className="navbar" role="navigation" aria-label="main navigation">
-			<div className="navbar-menu">
-				<div className="navbar-start">
+	<div class="container mt-1">
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div class="navbar-menu">
+				<div class="navbar-start">
 					<a class={`navbar-item ${props.selectedMenu === 'people' ? 'is-selected' : ''}`} href={personpage.URL}>People</a>
 					<a class={`navbar-item ${props.selectedMenu === 'info' ? 'is-selected' : ''}`} href={infopage.URL}>Info</a>
 				</div>
 			</div>
 		</nav>
 
-		<div className="p-1 mt-1 area-border" style="min-height: 500px">
+		<div class="p-1 mt-1 area-border" style="min-height: 500px">
 			{props.children}
 		</div>
 

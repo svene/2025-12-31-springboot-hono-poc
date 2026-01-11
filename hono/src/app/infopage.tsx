@@ -7,8 +7,8 @@ const URL = '/info';
 function ui() {
 	return (
 		<MpaLayout selectedMenu="info">
-			<div className="p-1">
-				<div className="content">
+			<div class="p-1">
+				<div class="content">
 					<p>This Application demonstrates the SpringBoot to Hono Architecture</p>
 				</div>
 

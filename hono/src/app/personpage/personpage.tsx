@@ -1,15 +1,9 @@
 import {Hono} from "hono";
 import {PersonPageModel} from "./person-page-model-vm";
 import {MpaLayout} from "../../ui/components/mpalayout";
-import {personedit} from "./personedit";
-import {persondetails} from "./persondetails";
-import {PersonRow, personrow} from "./personrow";
+import {PersonRow} from "./personrow";
 
 const URL = '/people';
-
-function x(e: MouseEvent) {
-	e.preventDefault();
-}
 
 function ui(vm: PersonPageModel) {
 	return (
@@ -21,10 +15,15 @@ function ui(vm: PersonPageModel) {
 						<input class="input" type="search" placeholder="Search for firstname or lastname"/>
 					</div>
 				</div>
-				<form id="person-form" hx-delete="/person/delete">
-					<button type="submit" className="button">Delete</button>
 					<table class="table">
 						<thead>
+						<tr>
+							<td colSpan={4}>
+								<form id="bulkDeleteForm" hx-delete="/person/delete">
+									<button type="submit" class="button">Delete</button>
+								</form>
+							</td>
+						</tr>
 						<tr>
 							<th></th>
 							<th>Firstname</th>
@@ -36,7 +35,7 @@ function ui(vm: PersonPageModel) {
 						{vm.table.people.map((it) => (<PersonRow vm={it}/>))}
 						</tbody>
 					</table>
-				</form>
+
 
 				<div>{vm.table.people.length} of total {vm.total}</div>
 			</>
@@ -49,10 +48,6 @@ function init(hono: Hono) {
 		const vm = await c.req.json() as PersonPageModel;
 		return c.render(ui(vm));
 	});
-
-	personedit.init(hono);
-	persondetails.init(hono);
-	personrow.init(hono);
 }
 
 export const personpage = {

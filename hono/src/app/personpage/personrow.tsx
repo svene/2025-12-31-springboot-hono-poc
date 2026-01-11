@@ -11,7 +11,9 @@ export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 		hx-swap="outerHTML"
 		hx-get={`/person/${props.vm.id}/details`}
 	>
-		<td hx-trigger="click consume"><input type="checkbox" name="selection" value={props.vm.id}></input></td>
+		<td hx-trigger="click consume">
+			<input type="checkbox" name="selection" value={props.vm.id} form="bulkDeleteForm"></input>
+		</td>
 		<td>{props.vm.firstName}</td>
 		<td>{props.vm.lastName}</td>
 		<td>{props.vm.streetName}</td>

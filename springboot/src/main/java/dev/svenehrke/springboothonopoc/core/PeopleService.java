@@ -31,4 +31,9 @@ public class PeopleService {
 		return peopleRepository.deleteByIds(ids);
 	}
 
+	@Transactional
+	public int updatePerson(int id, PersonEditModel personEditModel) {
+		return peopleRepository.updatePerson(id, personEditModel);
+	}
+
 }

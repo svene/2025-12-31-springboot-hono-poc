@@ -10,25 +10,26 @@ function ui(vm: PersonTableRowModel) {
 			hx-trigger="click"
 			hx-target="this"
 			hx-swap="outerHTML"
-			hx-get={`/person/${vm.id}/edit`}>
-			<td colspan={4} style="padding: 0px">
-				<div className="card p-5 my-2 mx-0">
+			hx-get={`/person/${vm.id}/edit`}
+		>
+			<td colSpan={4} style="padding: 0px">
+				<div class="card p-5 my-2 mx-0">
 					<nav class="level">
-						<div className="level-left">
-							<div className="level-item">
-								<p className="title">{vm.firstName} {vm.lastName}</p>
+						<div class="level-left">
+							<div class="level-item">
+								<p class="title">{vm.firstName} {vm.lastName}</p>
 							</div>
 						</div>
 					</nav>
 					<nav class="level">
-						<div className="level-left">
-							<div className="level-item">
-								<p className="subtitle">{vm.streetName}</p>
+						<div class="level-left">
+							<div class="level-item">
+								<p class="subtitle">{vm.streetName}</p>
 							</div>
 						</div>
 					</nav>
 					<button
-						className="level-item button"
+						class="level-item button"
 						hx-trigger="click consume"
 						hx-target="closest tr"
 						hx-swap="outerHTML"

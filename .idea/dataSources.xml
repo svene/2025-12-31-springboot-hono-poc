@@ -9,7 +9,7 @@
       <jdbc-url>jdbc:hsqldb:mem:testdb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1 [DEBUG]" group="​Application" uuid="4fa9a5bf-cad8-4a75-b491-746b3ecf7aa6">
+    <data-source source="LOCAL" name="jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1 [DEBUG]" group="​Application" uuid="8c695e07-c9c5-4e67-ab78-ca302ed8effd">
       <driver-ref>hsqldb.local</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

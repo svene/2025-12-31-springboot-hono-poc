@@ -2,7 +2,7 @@ import { Project, Type } from "ts-morph";
 import * as fs from "fs";
 
 const project = new Project();
-const sources = project.addSourceFilesAtPaths("src/app/*-vm.ts");
+const sources = project.addSourceFilesAtPaths("src/app/**/*-vm.ts");
 
 const javaPackage = "dev.svenehrke.springboothonopoc.core"
 const outPath = `build/generated-sources/java-dtos/src/main/java/${javaPackage.split(".").join("/")}`;

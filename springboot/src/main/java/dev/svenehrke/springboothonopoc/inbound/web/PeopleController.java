@@ -1,5 +1,6 @@
 package dev.svenehrke.springboothonopoc.inbound.web;
 
+import dev.svenehrke.springboothonopoc.core.PersonEditModel;
 import dev.svenehrke.springboothonopoc.core.PersonPageModel;
 import dev.svenehrke.springboothonopoc.core.PeopleService;
 import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
@@ -59,9 +60,17 @@ public class PeopleController {
 	}
 
 	@DeleteMapping("/person/delete")
-	public ResponseEntity<String> deleteRows3(@RequestParam List<Integer> selection, HttpServletResponse response) {
+	public ResponseEntity<String> deleteRows(@RequestParam List<Integer> selection, HttpServletResponse response) {
 		peopleService.deleteByIds(selection);
 		response.setHeader("HX-Redirect", PEOPLE_URL);
+		return people();
+	}
+
+	@PutMapping("/person/{id}")
+	public ResponseEntity<String> updatePerson(@PathVariable int id, PersonEditModel personEditModel, HttpServletResponse response) {
+		System.out.println("personEditModel = " + personEditModel.toString());
+		response.setHeader("HX-Redirect", PEOPLE_URL);
+		peopleService.updatePerson(id, personEditModel);
 		return people();
 	}
 

@@ -7,4 +7,5 @@ public interface PeopleRepository {
     int total();
     PersonTableRowModel personTableRowModel(int id);
     int deleteByIds(List<Integer> ids);
+    int updatePerson(int id, PersonEditModel personEditModel);
 }
