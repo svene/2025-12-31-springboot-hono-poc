@@ -25,8 +25,6 @@ export const PersonTable = (props: { vm: PersonTableModel }) => (
 			<tbody>
 			{props.vm.people.map((it) => (<PersonRow vm={it}/>))}
 			</tbody>
-			<tfoot>
-			</tfoot>
 		</table>
 		<div>{props.vm.people.length} of total {props.vm.total}</div>
 
