@@ -40,7 +40,7 @@ public class PeopleController {
 			var vm = peopleService.peopleForSearch(search);
 			return honoAppClient.post(PERSON_TABLE_URL, vm);
 		} else {
-			var vm = new PersonPageModel(peopleService.personTableModel(), peopleService.total());
+			var vm = new PersonPageModel(peopleService.personTableModel());
 			return honoAppClient.post(PEOPLE_URL, vm);
 
 		}

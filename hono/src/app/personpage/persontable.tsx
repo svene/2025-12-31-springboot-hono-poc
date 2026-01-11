@@ -5,26 +5,32 @@ import {PersonRow} from "./personrow";
 const URL = '/persontable';
 
 export const PersonTable = (props: { vm: PersonTableModel }) => (
-	<table className="table" id="result-table">
-		<thead>
-		<tr>
-			<td colSpan={4}>
-				<form id="bulkDeleteForm" hx-delete="/person/delete">
-					<button type="submit" className="button">Delete</button>
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<th></th>
-			<th>Firstname</th>
-			<th>Lastname</th>
-			<th>Street</th>
-		</tr>
-		</thead>
-		<tbody>
-		{props.vm.people.map((it) => (<PersonRow vm={it}/>))}
-		</tbody>
-	</table>
+	<div id="result-table">
+		<table className="table">
+			<thead>
+			<tr>
+				<td colSpan={4}>
+					<form id="bulkDeleteForm" hx-delete="/person/delete">
+						<button type="submit" className="button">Delete</button>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<th></th>
+				<th>Firstname</th>
+				<th>Lastname</th>
+				<th>Street</th>
+			</tr>
+			</thead>
+			<tbody>
+			{props.vm.people.map((it) => (<PersonRow vm={it}/>))}
+			</tbody>
+			<tfoot>
+			</tfoot>
+		</table>
+		<div>{props.vm.people.length} of total {props.vm.total}</div>
+
+	</div>
 );
 
 function ui(vm: PersonTableModel) {
@@ -36,7 +42,6 @@ function ui(vm: PersonTableModel) {
 function init(hono: Hono) {
 	hono.post(URL, async (c) => {
 		const vm = await c.req.json() as PersonTableModel;
-		console.log(JSON.stringify(vm));
 		return c.render(ui(vm));
 	});
 }

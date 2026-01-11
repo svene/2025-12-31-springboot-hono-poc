@@ -7,10 +7,10 @@ export type PersonTableRowModel = {
 
 export type PersonTableModel = {
 	people: PersonTableRowModel[],
+	total: number,
 }
 export type PersonPageModel = {
 	table: PersonTableModel,
-	total: number,
 }
 
 export type PersonEditModel = {

@@ -24,7 +24,6 @@ function ui(vm: PersonPageModel) {
 					</div>
 				</div>
 				<PersonTable vm={vm.table}></PersonTable>
-				<div>{vm.table.people.length} of total {vm.total}</div>
 			</>
 		</MpaLayout>
 	);

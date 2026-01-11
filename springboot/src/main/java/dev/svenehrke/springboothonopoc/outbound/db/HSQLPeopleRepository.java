@@ -31,7 +31,7 @@ public class HSQLPeopleRepository implements PeopleRepository {
 				rs.getString("lastname"),
 				rs.getString("streetname"))
 		).list();
-		return new PersonTableModel(result);
+		return new PersonTableModel(result, total());
 	}
 
 	@Override
@@ -43,6 +43,7 @@ public class HSQLPeopleRepository implements PeopleRepository {
 				firstname like (:search)
 				or lastname like (:search)
 				or streetname like (:search)
+			limit 20
 			""";
 		List<PersonTableRowModel> result = jdbcClient.sql(sql)
 			.param("search", "%" + search + "%")
@@ -53,7 +54,7 @@ public class HSQLPeopleRepository implements PeopleRepository {
 				rs.getString("lastname"),
 				rs.getString("streetname"))
 		).list();
-		return new PersonTableModel(result);
+		return new PersonTableModel(result, total());
 	}
 
 	@Override
