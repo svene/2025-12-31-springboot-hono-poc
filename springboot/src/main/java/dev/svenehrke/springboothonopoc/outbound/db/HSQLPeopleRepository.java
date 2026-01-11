@@ -81,7 +81,11 @@ public class HSQLPeopleRepository implements PeopleRepository {
 	@Override
 	public PersonDetailModel personTableDetailModel(int id) {
 		var sql = """
-			select id, firstname, lastname, streetname from Person where id = ?
+			select
+				id, firstname, lastname, streetname, zipcode, city,
+			    country, mailbox, phonenumber, cellphone
+			from Person
+			where id = ?
 			""";
 		PersonDetailModel result = jdbcClient.sql(sql)
 			.param(id)
@@ -90,7 +94,13 @@ public class HSQLPeopleRepository implements PeopleRepository {
 				rs.getInt("id"),
 				rs.getString("firstname"),
 				rs.getString("lastname"),
-				rs.getString("streetname")
+				rs.getString("streetname"),
+				rs.getString("zipcode"),
+				rs.getString("city"),
+				rs.getString("country"),
+				rs.getString("mailbox"),
+				rs.getString("phonenumber"),
+				rs.getString("cellphone")
 			)
 		).single();
 		return result;

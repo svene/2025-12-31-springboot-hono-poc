@@ -18,6 +18,12 @@ export type PersonDetailModel = {
 	firstName: string,
 	lastName: string,
 	streetName: string,
+	zipCode: string,
+	city: string,
+	country: string,
+	mailBox: string,
+	phoneNumber: string,
+	cellPhone: string,
 }
 
 export type PersonEditModel = {

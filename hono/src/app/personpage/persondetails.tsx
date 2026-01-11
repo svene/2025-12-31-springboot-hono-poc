@@ -28,6 +28,13 @@ function ui(vm: PersonDetailModel) {
 							</div>
 						</div>
 					</nav>
+					<nav class="level">
+						<div class="level-left">
+							<div class="level-item">
+								<p class="subtitle">{vm.city}</p>
+							</div>
+						</div>
+					</nav>
 					<button
 						class="level-item button"
 						hx-trigger="click consume"
