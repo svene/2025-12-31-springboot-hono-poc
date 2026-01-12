@@ -17,6 +17,7 @@ function ui(vm: PersonDetailModel) {
 				<td style="border-style: none">{vm.firstName}</td>
 				<td style="border-style: none">{vm.lastName}</td>
 				<td style="border-style: none">{vm.streetName}</td>
+				<td style="border-style: none"><span className="icon"><i className="material-icons">arrow_drop_up</i></span></td>
 			</tr>
 			<tr
 				id={`row-${vm.id}-details`}

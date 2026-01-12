@@ -9,9 +9,17 @@ export const MpaLayout = (props: {selectedMenu: string, children: ComponentChild
 		<title>People Admin Application</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>"/>
 		<script src="/static/js/htmx.org/2.0.8/htmx.js"></script>
-		{/*<script src="https://cdn.jsdelivr.net/npm/htmx.org@6.0.0-alpha6/dist/htmx.min.js"></script>*/}
 		<link rel="stylesheet" href="/static/css/bulma.min.css"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css "/>
+		{/*
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+		/>
+*/}
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		{/*https://fonts.google.com/icons*/}
+
+
 	</head>
 
 	<body>

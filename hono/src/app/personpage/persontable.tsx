@@ -20,6 +20,7 @@ export const PersonTable = (props: { vm: PersonTableModel }) => (
 				<th>Firstname</th>
 				<th>Lastname</th>
 				<th>Street</th>
+				<th></th>
 			</tr>
 			</thead>
 			<tbody>

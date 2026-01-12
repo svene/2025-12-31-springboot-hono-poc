@@ -18,6 +18,7 @@ export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 		<td>{props.vm.firstName}</td>
 		<td>{props.vm.lastName}</td>
 		<td>{props.vm.streetName}</td>
+		<td><span className="icon"><i className="material-icons">arrow_drop_down</i></span></td>
 	</tr>
 
 );
