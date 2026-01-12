@@ -82,7 +82,7 @@ public class HSQLPeopleRepository implements PeopleRepository {
 	public PersonDetailModel personTableDetailModel(int id) {
 		var sql = """
 			select
-				id, firstname, lastname, streetname, zipcode, city,
+				id, firstname, lastname, streetname, streetno, zipcode, city,
 			    country, mailbox, phonenumber, cellphone
 			from Person
 			where id = ?
@@ -95,6 +95,7 @@ public class HSQLPeopleRepository implements PeopleRepository {
 				rs.getString("firstname"),
 				rs.getString("lastname"),
 				rs.getString("streetname"),
+				rs.getString("streetno"),
 				rs.getString("zipcode"),
 				rs.getString("city"),
 				rs.getString("country"),

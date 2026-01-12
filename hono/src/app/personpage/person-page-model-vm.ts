@@ -18,6 +18,7 @@ export type PersonDetailModel = {
 	firstName: string,
 	lastName: string,
 	streetName: string,
+	streetNo: string,
 	zipCode: string,
 	city: string,
 	country: string,

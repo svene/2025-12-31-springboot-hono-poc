@@ -5,6 +5,7 @@ const URL = '/person/row';
 
 export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 	<tr
+		id={`row-${props.vm.id}`}
 		style="cursor: pointer"
 		hx-trigger="click"
 		hx-target="this"

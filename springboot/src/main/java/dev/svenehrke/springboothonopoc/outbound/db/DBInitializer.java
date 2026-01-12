@@ -37,10 +37,12 @@ public class DBInitializer {
 		for (int i = 0; i < 150; i++) {
 			jdbcTemplate.update("""
 					INSERT INTO
-					Person(firstname, lastname, streetname, zipcode, city, country, mailbox, phonenumber, cellphone)
-					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+					Person(firstname, lastname,
+					       streetname, streetno, zipcode, city, country,
+					       mailbox, phonenumber, cellphone)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 					""",
-				name.firstName(), name.lastName(), address.streetName(),
+				name.firstName(), name.lastName(), address.streetName(), address.streetAddressNumber(),
 				address.zipCode(), address.city(), address.country(),
 				address.mailBox(),
 				phone.phoneNumber(), phone.cellPhone()

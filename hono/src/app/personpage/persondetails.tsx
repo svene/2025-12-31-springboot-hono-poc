@@ -5,48 +5,40 @@ const URL = '/person/details';
 
 function ui(vm: PersonDetailModel) {
 	return (
-		<tr
-			style="cursor: pointer"
-			hx-trigger="click"
-			hx-target="this"
-			hx-swap="outerHTML"
-			hx-get={`/person/${vm.id}/edit`}
-		>
-			<td colSpan={4} style="padding: 0px">
-				<div class="card p-5 my-2 mx-0">
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<p class="title">{vm.firstName} {vm.lastName}</p>
-							</div>
+		<>
+			<tr
+				id={`row-${vm.id}`}
+				hx-trigger="click"
+				hx-target="this"
+				hx-swap="outerHTML"
+				hx-get={`/person/${vm.id}/detailsback`}
+			>
+				<td style="border-style: none"></td>
+				<td style="border-style: none">{vm.firstName}</td>
+				<td style="border-style: none">{vm.lastName}</td>
+				<td style="border-style: none">{vm.streetName}</td>
+			</tr>
+			<tr
+				id={`row-${vm.id}-details`}
+				style="cursor: pointer"
+				hx-trigger="click"
+				hx-target="this"
+				hx-swap="outerHTML"
+				hx-get={`/person/${vm.id}/edit`}
+			>
+				<td colSpan={4} style="padding-left: 30px">
+
+						<div class="card p-5 my-2 mx-0">
+							<div class="mb-1"><strong>Street:</strong> {vm.streetName} {vm.streetNo}</div>
+							<div class="mb-1"><strong>City:</strong> {vm.zipCode} {vm.city}</div>
+							<div class="mb-1"><strong>Mailbox:</strong> {vm.mailBox}</div>
+							<div class="mb-1"><strong>Phone:</strong> {vm.phoneNumber}</div>
+							<div class="mb-3"><strong>Cellphone:</strong> {vm.cellPhone}</div>
 						</div>
-					</nav>
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<p class="subtitle">{vm.streetName}</p>
-							</div>
-						</div>
-					</nav>
-					<nav class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<p class="subtitle">{vm.city}</p>
-							</div>
-						</div>
-					</nav>
-					<button
-						class="level-item button"
-						hx-trigger="click consume"
-						hx-target="closest tr"
-						hx-swap="outerHTML"
-						hx-get={`/person/${vm.id}/row`}
-					>&lt; Back
-					</button>
-				</div>
-			</td>
-		</tr>
-	);
+				</td>
+			</tr>
+		</>
+);
 }
 
 function init(hono: Hono) {

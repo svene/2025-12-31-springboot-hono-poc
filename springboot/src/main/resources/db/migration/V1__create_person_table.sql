@@ -4,6 +4,7 @@ CREATE TABLE Person
 	firstname  VARCHAR(100) NOT NULL,
 	lastname   VARCHAR(100) NOT NULL,
 	streetname VARCHAR(150),
+	streetno VARCHAR(10),
 	zipcode VARCHAR(10),
 	city VARCHAR(100),
 	country VARCHAR(100),

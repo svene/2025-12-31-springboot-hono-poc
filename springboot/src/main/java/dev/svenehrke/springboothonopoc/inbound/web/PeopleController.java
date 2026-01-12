@@ -64,6 +64,12 @@ public class PeopleController {
 		return honoAppClient.post("/person/row", vm);
 	}
 
+	@GetMapping("/person/{id}/detailsback")
+	public ResponseEntity<String> detailsback(@PathVariable int id) {
+		var vm = peopleService.personTableRowModel(id);
+		return honoAppClient.post("/person/detailsback", vm);
+	}
+
 	@DeleteMapping("/person/delete")
 	public ResponseEntity<String> deleteRows(@RequestParam List<Integer> selection, HttpServletResponse response) {
 		peopleService.deleteByIds(selection);
