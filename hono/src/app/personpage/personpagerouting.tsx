@@ -1,15 +1,16 @@
 import {Hono} from "hono";
 import {PersonEditor} from "./personedit";
 import {PersonDetails} from "./persondetails";
-import {personrow} from "./personrow";
 import {persondetailsback} from "./persondetailsback";
 import {PersonTable} from "./persontable";
 import {personpage} from "./personpage";
-import {PersonDetailModel, PersonEditModel, PersonTableModel} from "./person-page-model-vm";
+import {PersonDetailModel, PersonEditModel, PersonTableModel, PersonTableRowModel} from "./person-page-model-vm";
+import {PersonRow} from "./personrow";
 
 const PERSON_TABLE_URL = '/persontable';
 const PERSON_DETAILS_URL = '/person/details';
 const PERSON_EDIT_URL = '/person/edit';
+const PERSON_ROW_URL = '/person/row';
 
 function init(hono: Hono) {
 	hono.post(PERSON_DETAILS_URL, async (c) => {
@@ -21,7 +22,11 @@ function init(hono: Hono) {
 		return c.render(<PersonEditor vm={vm}></PersonEditor>);
 	});
 
-	personrow.init(hono);
+	hono.post(PERSON_ROW_URL, async (c) => {
+		const vm = await c.req.json() as PersonTableRowModel;
+		return c.render(<PersonRow vm={vm}></PersonRow>);
+	});
+
 	persondetailsback.init(hono);
 
 	hono.post(PERSON_TABLE_URL, async (c) => {

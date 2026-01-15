@@ -1,7 +1,4 @@
-import {Hono} from "hono";
 import {PersonTableRowModel} from "./person-page-model-vm";
-
-const URL = '/person/row';
 
 export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 	<tr
@@ -22,21 +19,3 @@ export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 	</tr>
 
 );
-
-function ui(vm: PersonTableRowModel) {
-	return (
-		<PersonRow vm={vm}/>
-	);
-}
-
-function init(hono: Hono) {
-	hono.post(URL, async (c) => {
-		const vm = await c.req.json() as PersonTableRowModel;
-		return c.render(ui(vm));
-	});
-}
-
-export const personrow = {
-	URL,
-	init,
-}
