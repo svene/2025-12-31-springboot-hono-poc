@@ -1,7 +1,7 @@
 import {Hono} from "hono";
 import {PersonEditor} from "./personedit";
 import {PersonDetails} from "./persondetails";
-import {persondetailsback} from "./persondetailsback";
+import {PersonDetailsBack, persondetailsback} from "./persondetailsback";
 import {PersonTable} from "./persontable";
 import {personpage} from "./personpage";
 import {PersonDetailModel, PersonEditModel, PersonTableModel, PersonTableRowModel} from "./person-page-model-vm";
@@ -11,6 +11,7 @@ const PERSON_TABLE_URL = '/persontable';
 const PERSON_DETAILS_URL = '/person/details';
 const PERSON_EDIT_URL = '/person/edit';
 const PERSON_ROW_URL = '/person/row';
+const PERSON_DETAILS_BACK_URL = '/person/detailsback';
 
 function init(hono: Hono) {
 	hono.post(PERSON_DETAILS_URL, async (c) => {
@@ -27,7 +28,10 @@ function init(hono: Hono) {
 		return c.render(<PersonRow vm={vm}></PersonRow>);
 	});
 
-	persondetailsback.init(hono);
+	hono.post(PERSON_DETAILS_BACK_URL, async (c) => {
+		const vm = await c.req.json() as PersonTableRowModel;
+		return c.render(<PersonDetailsBack vm={vm}></PersonDetailsBack>);
+	});
 
 	hono.post(PERSON_TABLE_URL, async (c) => {
 		const vm = await c.req.json() as PersonTableModel;
