@@ -1,4 +1,5 @@
 import {PersonDetailModel} from "./person-page-model-vm";
+import {SpringUrls} from "./spring-urls";
 
 export const PersonDetails = (props: { vm: PersonDetailModel }) => (
 		<>
@@ -7,7 +8,7 @@ export const PersonDetails = (props: { vm: PersonDetailModel }) => (
 				hx-trigger="click"
 				hx-target="this"
 				hx-swap="outerHTML"
-				hx-get={`/person/${props.vm.id}/detailsback`}
+				hx-get={SpringUrls.Person.detailsBack(props.vm.id)}
 			>
 				<td style="border-style: none"></td>
 				<td style="border-style: none">{props.vm.firstName}</td>
@@ -21,7 +22,7 @@ export const PersonDetails = (props: { vm: PersonDetailModel }) => (
 				hx-trigger="click"
 				hx-target="this"
 				hx-swap="outerHTML"
-				hx-get={`/person/${props.vm.id}/edit`}
+				hx-get={SpringUrls.Person.edit(props.vm.id)}
 			>
 				<td colSpan={4} style="padding-left: 30px">
 

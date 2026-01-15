@@ -1,4 +1,5 @@
 import {PersonTableRowModel} from "./person-page-model-vm";
+import {SpringUrls} from "./spring-urls";
 
 export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 	<tr
@@ -7,7 +8,7 @@ export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 		hx-trigger="click"
 		hx-target="this"
 		hx-swap="outerHTML"
-		hx-get={`/person/${props.vm.id}/details`}
+		hx-get={SpringUrls.Person.details(props.vm.id)}
 	>
 		<td hx-trigger="click consume">
 			<input type="checkbox" name="selection" value={props.vm.id} form="bulkDeleteForm"></input>

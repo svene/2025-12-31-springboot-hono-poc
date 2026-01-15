@@ -1,4 +1,5 @@
 import {PersonEditModel} from "./person-page-model-vm";
+import {SpringUrls} from "./spring-urls";
 
 export const PersonEditor = (props: { vm: PersonEditModel }) => (
 	<tr>
@@ -39,7 +40,7 @@ export const PersonEditor = (props: { vm: PersonEditModel }) => (
 							hx-trigger="click consume"
 							hx-target="closest tr"
 							hx-swap="outerHTML"
-							hx-get={`/person/${props.vm.id}/details`}
+							hx-get={SpringUrls.Person.details(props.vm.id)}
 						>&lt; Back
 						</button>
 						<button
