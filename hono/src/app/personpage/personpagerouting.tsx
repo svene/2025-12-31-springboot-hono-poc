@@ -1,19 +1,30 @@
 import {Hono} from "hono";
 import {PersonEditor} from "./personedit";
 import {PersonDetails} from "./persondetails";
-import {PersonDetailsBack, persondetailsback} from "./persondetailsback";
+import {PersonDetailsBack} from "./persondetailsback";
 import {PersonTable} from "./persontable";
-import {personpage} from "./personpage";
-import {PersonDetailModel, PersonEditModel, PersonTableModel, PersonTableRowModel} from "./person-page-model-vm";
+import {PersonPage} from "./personpage";
+import {
+	PersonDetailModel,
+	PersonEditModel,
+	PersonPageModel,
+	PersonTableModel,
+	PersonTableRowModel
+} from "./person-page-model-vm";
 import {PersonRow} from "./personrow";
 
+export const PERSON_PAGE_URL = '/page/people';
 const PERSON_TABLE_URL = '/persontable';
 const PERSON_DETAILS_URL = '/person/details';
 const PERSON_EDIT_URL = '/person/edit';
 const PERSON_ROW_URL = '/person/row';
 const PERSON_DETAILS_BACK_URL = '/person/detailsback';
 
-function init(hono: Hono) {
+export function init(hono: Hono) {
+	hono.post(PERSON_PAGE_URL, async (c) => {
+		const vm = await c.req.json() as PersonPageModel;
+		return c.render(<PersonPage vm={vm}></PersonPage>);
+	});
 	hono.post(PERSON_DETAILS_URL, async (c) => {
 		const vm = await c.req.json() as PersonDetailModel;
 		return c.render(<PersonDetails vm={vm}></PersonDetails>);
@@ -37,8 +48,6 @@ function init(hono: Hono) {
 		const vm = await c.req.json() as PersonTableModel;
 		return c.render(<PersonTable vm={vm}></PersonTable>);
 	});
-
-	personpage.init(hono);
 }
 
 export const personPageRouting = {
