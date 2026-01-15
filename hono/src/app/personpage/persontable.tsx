@@ -1,8 +1,5 @@
-import {Hono} from "hono";
 import {PersonTableModel} from "./person-page-model-vm";
 import {PersonRow} from "./personrow";
-
-const URL = '/persontable';
 
 export const PersonTable = (props: { vm: PersonTableModel }) => (
 	<div id="result-table">
@@ -31,21 +28,3 @@ export const PersonTable = (props: { vm: PersonTableModel }) => (
 
 	</div>
 );
-
-function ui(vm: PersonTableModel) {
-	return (
-		<PersonTable vm={vm}></PersonTable>
-	);
-}
-
-function init(hono: Hono) {
-	hono.post(URL, async (c) => {
-		const vm = await c.req.json() as PersonTableModel;
-		return c.render(ui(vm));
-	});
-}
-
-export const persontable = {
-	URL,
-	init,
-}
