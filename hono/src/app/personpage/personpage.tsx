@@ -3,7 +3,7 @@ import {PersonPageModel} from "./person-page-model-vm";
 import {MpaLayout} from "../../ui/components/mpalayout";
 import {PersonTable} from "./persontable";
 
-const URL = '/people';
+const URL = '/page/people';
 
 function ui(vm: PersonPageModel) {
 	return (
@@ -18,7 +18,7 @@ function ui(vm: PersonPageModel) {
 							name="search"
 							placeholder="Search for firstname or lastname"
 							hx-trigger="input changed delay:500ms"
-							hx-get="/people"
+							hx-get="/persontable"
 							hx-target="#result-table"
 						/>
 					</div>

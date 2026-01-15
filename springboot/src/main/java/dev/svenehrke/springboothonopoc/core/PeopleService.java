@@ -2,6 +2,7 @@ package dev.svenehrke.springboothonopoc.core;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class PeopleService {
     }
 
 	public PersonTableModel peopleForSearch(String search) {
-        return peopleRepository.peopleForSearch(search);
+        return StringUtils.hasLength(search) ? peopleRepository.peopleForSearch(search) : peopleRepository.people();
     }
 
 	public int total() {

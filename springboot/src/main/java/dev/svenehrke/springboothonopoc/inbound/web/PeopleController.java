@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 public class PeopleController {
 
-	public static final String PEOPLE_URL = "/people";
+	public static final String PAGE_PEOPLE_URL = "/page/people";
 	public static final String PERSON_TABLE_URL = "/persontable";
 
 	private final PeopleService peopleService;
@@ -34,16 +34,15 @@ public class PeopleController {
 		this.honoAppClient = honoAppClient;
 	}
 
-	@GetMapping(PEOPLE_URL)
-	public ResponseEntity<String> people(@RequestParam(required = false) String search) {
-		if (StringUtils.hasLength(search)) {
-			var vm = peopleService.peopleForSearch(search);
-			return honoAppClient.post(PERSON_TABLE_URL, vm);
-		} else {
-			var vm = new PersonPageModel(peopleService.personTableModel());
-			return honoAppClient.post(PEOPLE_URL, vm);
+	@GetMapping(PAGE_PEOPLE_URL)
+	public ResponseEntity<String> peoplePage() {
+		var vm = new PersonPageModel(peopleService.personTableModel());
+		return honoAppClient.post("/page/people", vm);
+	}
 
-		}
+	@GetMapping(PERSON_TABLE_URL)
+	public ResponseEntity<String> peopleUrl(@RequestParam() String search) {
+		return honoAppClient.post(PERSON_TABLE_URL, peopleService.peopleForSearch(search));
 	}
 
 	@GetMapping("/person/{id}/edit")
@@ -73,16 +72,16 @@ public class PeopleController {
 	@DeleteMapping("/person/delete")
 	public ResponseEntity<String> deleteRows(@RequestParam List<Integer> selection, HttpServletResponse response) {
 		peopleService.deleteByIds(selection);
-		response.setHeader("HX-Redirect", PEOPLE_URL);
-		return people(null);
+		response.setHeader("HX-Redirect", PAGE_PEOPLE_URL);
+		return peoplePage();
 	}
 
 	@PutMapping("/person/{id}")
 	public ResponseEntity<String> updatePerson(@PathVariable int id, PersonEditModel personEditModel, HttpServletResponse response) {
 		System.out.println("personEditModel = " + personEditModel.toString());
-		response.setHeader("HX-Redirect", PEOPLE_URL);
+		response.setHeader("HX-Redirect", PAGE_PEOPLE_URL);
 		peopleService.updatePerson(id, personEditModel);
-		return people(null);
+		return peoplePage();
 	}
 
 }
