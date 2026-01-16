@@ -5,6 +5,7 @@ export const PersonDetails = (props: { vm: PersonDetailModel }) => (
 		<>
 			<tr
 				id={`row-${props.vm.id}`}
+				style="cursor: pointer"
 				hx-trigger="click"
 				hx-target="this"
 				hx-swap="outerHTML"

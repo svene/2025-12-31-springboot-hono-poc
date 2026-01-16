@@ -6,9 +6,12 @@ export const PersonTable = (props: { vm: PersonTableModel }) => (
 		<table className="table">
 			<thead>
 			<tr>
-				<td colSpan={4}>
+				<td colSpan={5}>
 					<form id="bulkDeleteForm" hx-delete="/person/delete">
-						<button type="submit" className="button">Delete</button>
+						<button type="submit" className="button">
+							<span className="icon"><i className="material-icons">delete</i></span>
+							<span>Delete</span>
+						</button>
 					</form>
 				</td>
 			</tr>
