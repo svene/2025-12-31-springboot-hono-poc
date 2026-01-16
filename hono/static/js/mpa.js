@@ -1,7 +1,7 @@
 document.addEventListener('alpine:init', () => {
 	console.log('init store')
 	Alpine.store('darkMode', {
-		on: false,
+		on: true,
 
 		toggle() {
 			this.on = ! this.on
@@ -9,6 +9,9 @@ document.addEventListener('alpine:init', () => {
 
 		get theme() {
 			return this.on ? 'dark' : 'light'
+		},
+		get icon() {
+			return this.on ? 'light_mode' : 'dark_mode'
 		}
 	})
 });

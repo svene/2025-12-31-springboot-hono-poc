@@ -19,10 +19,10 @@ export const MpaLayout = (props: {selectedMenu: string, children: ComponentChild
 	<section class="hero is-link">
 		<div class="hero-body">
 			<p class="title">People Admin Application</p>
-			<p x-text="on"></p>
-			<p x-text="theme"></p>
-			{/*<button x-on:click="dark = !dark">Switch to dark/light</button>*/}
-			<button x-on:click="$store.darkMode.toggle()">Switch to dark/light</button>
+			<button x-on:click="$store.darkMode.toggle()">
+				<span class="icon"><i class="material-icons" x-text="icon"></i></span>
+			</button>
+
 		</div>
 	</section>
 
