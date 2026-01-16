@@ -2,7 +2,7 @@ import {PersonEditModel} from "./person-page-model-vm";
 import {SpringUrls} from "./spring-urls";
 
 export const PersonEditor = (props: { vm: PersonEditModel }) => (
-	<tr>
+	<tr id={`row-${props.vm.id}-edit`}>
 		<td colSpan={4} style="padding: 0px">
 			<div class="card p-5 my-2">
 				<form hx-put={`/person/${props.vm.id}`}>
@@ -40,7 +40,7 @@ export const PersonEditor = (props: { vm: PersonEditModel }) => (
 							hx-trigger="click consume"
 							hx-target="closest tr"
 							hx-swap="outerHTML"
-							hx-get={SpringUrls.Person.details(props.vm.id)}
+							hx-get={SpringUrls.Person.editBack(props.vm.id)}
 						>&lt; Back
 						</button>
 						<button

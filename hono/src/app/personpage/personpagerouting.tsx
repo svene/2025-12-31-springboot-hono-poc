@@ -12,6 +12,7 @@ import {
 	PersonTableRowModel
 } from "./person-page-model-vm";
 import {PersonRow} from "./personrow";
+import {PersonEditBack} from "./personeditback";
 
 export const PERSON_PAGE_URL = '/page/people';
 const PERSON_TABLE_URL = '/persontable';
@@ -19,6 +20,7 @@ const PERSON_DETAILS_URL = '/person/details';
 const PERSON_EDIT_URL = '/person/edit';
 const PERSON_ROW_URL = '/person/row';
 const PERSON_DETAILS_BACK_URL = '/person/detailsback';
+const PERSON_EDIT_BACK_URL = '/person/editback';
 
 function init(hono: Hono) {
 	hono.post(PERSON_PAGE_URL, async (c) => {
@@ -48,6 +50,12 @@ function init(hono: Hono) {
 		const vm = await c.req.json() as PersonTableModel;
 		return c.render(<PersonTable vm={vm}></PersonTable>);
 	});
+
+	hono.post(PERSON_EDIT_BACK_URL, async (c) => {
+		const vm = await c.req.json() as PersonDetailModel;
+		return c.render(<PersonEditBack vm={vm}></PersonEditBack>);
+	});
+
 }
 
 export const personPageRouting = {

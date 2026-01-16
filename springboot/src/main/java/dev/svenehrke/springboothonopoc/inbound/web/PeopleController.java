@@ -53,6 +53,12 @@ public class PeopleController {
 		var vm = peopleService.personTableRowModel(id);
 		return honoAppClient.post("/person/edit", vm);
 	}
+	@GetMapping("/person/{id}/editback")
+	public ResponseEntity<String> editback(@PathVariable int id) {
+		var vm = peopleService.personTableDetailModel(id);
+		return honoAppClient.post("/person/editback", vm);
+	}
+
 
 	@GetMapping("/person/{id}/details")
 	public ResponseEntity<String> details(@PathVariable int id) {
