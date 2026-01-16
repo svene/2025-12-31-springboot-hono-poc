@@ -50,32 +50,27 @@ public class PeopleController {
 
 	@GetMapping("/person/{id}/edit")
 	public ResponseEntity<String> edit(@PathVariable int id) {
-		var vm = peopleService.personTableRowModel(id);
-		return honoAppClient.post("/person/edit", vm);
+		return honoAppApi.personEdit(peopleService.personTableRowModel(id));
 	}
 	@GetMapping("/person/{id}/editback")
 	public ResponseEntity<String> editback(@PathVariable int id) {
-		var vm = peopleService.personTableDetailModel(id);
-		return honoAppClient.post("/person/editback", vm);
+		return honoAppApi.personEditBack(peopleService.personTableDetailModel(id));
 	}
 
 
 	@GetMapping("/person/{id}/details")
 	public ResponseEntity<String> details(@PathVariable int id) {
-		var vm = peopleService.personTableDetailModel(id);
-		return honoAppClient.post("/person/details", vm);
+		return honoAppApi.personDetails(peopleService.personTableDetailModel(id));
 	}
 
 	@GetMapping("/person/{id}/row")
 	public ResponseEntity<String> row(@PathVariable int id) {
-		var vm = peopleService.personTableRowModel(id);
-		return honoAppClient.post("/person/row", vm);
+		return honoAppApi.personRow(peopleService.personTableRowModel(id));
 	}
 
 	@GetMapping("/person/{id}/detailsback")
 	public ResponseEntity<String> detailsback(@PathVariable int id) {
-		var vm = peopleService.personTableRowModel(id);
-		return honoAppClient.post("/person/detailsback", vm);
+		return honoAppApi.personDetailsBack(peopleService.personTableRowModel(id));
 	}
 
 	@DeleteMapping("/person/delete")
@@ -87,7 +82,6 @@ public class PeopleController {
 
 	@PutMapping("/person/{id}")
 	public ResponseEntity<String> updatePerson(@PathVariable int id, PersonEditModel personEditModel, HttpServletResponse response) {
-		System.out.println("personEditModel = " + personEditModel.toString());
 		response.setHeader("HX-Redirect", PAGE_PEOPLE_URL);
 		peopleService.updatePerson(id, personEditModel);
 		return peoplePage();
