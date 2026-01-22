@@ -1,5 +1,19 @@
 = Information for Development
 
+== Setup and run
+
+To install dependencies:
+```sh
+bun install
+```
+
+To run:
+```sh
+bun run dev
+```
+
+open http://localhost:3000
+
 == Notes
 
 === 10.01.2026
