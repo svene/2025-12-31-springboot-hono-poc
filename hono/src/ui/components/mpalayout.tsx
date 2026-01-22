@@ -18,11 +18,16 @@ export const MpaLayout = (props: {selectedMenu: string, children: ComponentChild
 	<body>
 	<section class="hero is-link">
 		<div class="hero-body">
-			<p class="title">People Admin Application</p>
-			<button x-on:click="$store.darkMode.toggle()">
-				<span class="icon"><i class="material-icons" x-text="icon"></i></span>
-			</button>
-
+			<nav className="level">
+				<div className="level-left">
+					<p className="title">People Admin Application</p>
+				</div>
+				<div className="level-right">
+					<button x-on:click="$store.darkMode.toggle()">
+						<span className="icon"><i className="material-icons" x-text="icon"></i></span>
+					</button>
+				</div>
+			</nav>
 		</div>
 	</section>
 
@@ -30,7 +35,8 @@ export const MpaLayout = (props: {selectedMenu: string, children: ComponentChild
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<div class="navbar-menu">
 				<div class="navbar-start">
-					<a class={`navbar-item ${props.selectedMenu === 'people' ? 'is-selected' : ''}`} href={PERSON_PAGE_URL}>People</a>
+					<a class={`navbar-item ${props.selectedMenu === 'people' ? 'is-selected' : ''}`} href={PERSON_PAGE_URL}>OOB Variant</a>
+					<a class={`navbar-item ${props.selectedMenu === 'people-events' ? 'is-selected' : ''}`} href={PERSON_PAGE_URL}>Events Variant</a>
 					<a class={`navbar-item ${props.selectedMenu === 'info' ? 'is-selected' : ''}`} href={INFO_PAGE_URL}>Info</a>
 				</div>
 			</div>
