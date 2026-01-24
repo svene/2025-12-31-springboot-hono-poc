@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HonoOOBPersonApi {
+public class HonoAppApi {
 	private static final String PAGE_PEOPLE_URL = "/page/people";
 	private static final String PERSON_TABLE_URL = "/persontable";
 	private static final String PERSON_EDIT_URL = "/person/edit";
@@ -19,7 +19,7 @@ public class HonoOOBPersonApi {
 
 	private final HonoAppClient honoAppClient;
 
-	public HonoOOBPersonApi(HonoAppClient honoAppClient) {
+	public HonoAppApi(HonoAppClient honoAppClient) {
 		this.honoAppClient = honoAppClient;
 	}
 

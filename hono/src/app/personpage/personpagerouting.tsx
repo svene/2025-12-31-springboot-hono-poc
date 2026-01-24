@@ -22,8 +22,6 @@ const PERSON_ROW_URL = '/person/row';
 const PERSON_DETAILS_BACK_URL = '/person/detailsback';
 const PERSON_EDIT_BACK_URL = '/person/editback';
 
-export const EVT_PERSON_PAGE_URL = '/page/eventpeople';
-
 function init(hono: Hono) {
 	hono.post(PERSON_PAGE_URL, async (c) => {
 		const vm = await c.req.json() as PersonPageModel;
