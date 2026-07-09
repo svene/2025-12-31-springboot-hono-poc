@@ -1,5 +1,5 @@
 import {PersonDetailModel} from "./person-page-model-vm";
-import {SpringUrls} from "./spring-urls";
+import {PersonSpringUrls} from "./person-spring-urls";
 
 export const PersondetailsCard = (props: { vm: PersonDetailModel }) => (
 		<>
@@ -9,7 +9,7 @@ export const PersondetailsCard = (props: { vm: PersonDetailModel }) => (
 				hx-trigger="click"
 				hx-target="this"
 				hx-swap="outerHTML"
-				hx-get={SpringUrls.Person.edit(props.vm.id)}
+				hx-get={PersonSpringUrls.Person.edit(props.vm.id)}
 			>
 				<td colSpan={4} style="padding-left: 30px">
 

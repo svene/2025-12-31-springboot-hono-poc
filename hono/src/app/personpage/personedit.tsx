@@ -1,5 +1,5 @@
 import {PersonEditModel} from "./person-page-model-vm";
-import {SpringUrls} from "./spring-urls";
+import {PersonSpringUrls} from "./person-spring-urls";
 
 export const PersonEditor = (props: { vm: PersonEditModel }) => (
 	<tr id={`row-${props.vm.id}-edit`}>
@@ -40,7 +40,7 @@ export const PersonEditor = (props: { vm: PersonEditModel }) => (
 							hx-trigger="click consume"
 							hx-target="closest tr"
 							hx-swap="outerHTML"
-							hx-get={SpringUrls.Person.editBack(props.vm.id)}
+							hx-get={PersonSpringUrls.Person.editBack(props.vm.id)}
 						>&lt; Back
 						</button>
 						<button

@@ -1,6 +1,5 @@
 
-// TODO: think about passing these URLs in the VM from spring to hono:
-export const SpringUrls = {
+export const PersonSpringUrls = {
 	Person: {
 		details: (id: number) => `/person/${id}/details`,
 		detailsBack: (id: number) => `/person/${id}/detailsback`,

@@ -3,8 +3,6 @@ import {InfoPage} from "./infopage";
 
 export const ROUTER_URL = '/router';
 
-export const INFO_PAGE_URL = '/info';
-
 function init(hono: Hono) {
 	hono.post(ROUTER_URL, async (c) => {
 		const name = c.req.query('name');
