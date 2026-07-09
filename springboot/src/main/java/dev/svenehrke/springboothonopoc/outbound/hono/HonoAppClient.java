@@ -55,6 +55,19 @@ public class HonoAppClient {
 			.toEntity(String.class)
 			;
 	}
+	public <T> ResponseEntity<String> route(String name, T vm) {
+		return restClient
+			.post()
+			.uri(uriBuilder -> uriBuilder
+				.path("/router")
+				.queryParam("name", name)
+				.build())
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(vm)
+			.retrieve()
+			.toEntity(String.class)
+			;
+	}
 
 	private UriBuilder defaultUrlBuilder(UriBuilder uriBuilder) {
 		return uriBuilder

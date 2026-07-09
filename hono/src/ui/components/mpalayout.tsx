@@ -1,8 +1,8 @@
-import type { ComponentChildren } from 'hono/jsx'
+import type {Child} from 'hono/jsx'
 import {PERSON_PAGE_URL} from "../../app/personpage/personpagerouting";
-import {INFO_PAGE_URL} from "../../app/misc/misc-routing";
+import {INFO_PAGE_URL} from "../../app/misc/app-router";
 
-export const MpaLayout = (props: {selectedMenu: string, children: ComponentChildren }) => (
+export const MpaLayout = (props: {selectedMenu: string, children: Child }) => (
 	<html lang="en" x-data="$store.darkMode" x-bind:data-theme="theme">
 	<head>
 		<meta charSet="UTF-8"/>
