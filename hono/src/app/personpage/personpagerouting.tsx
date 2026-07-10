@@ -22,11 +22,14 @@ const PERSON_ROW_URL = '/person/row';
 const PERSON_DETAILS_BACK_URL = '/person/detailsback';
 const PERSON_EDIT_BACK_URL = '/person/editback';
 
-function init(hono: Hono) {
-	hono.post(PERSON_PAGE_URL, async (c) => {
+export const personRoutes = {
+	PersonPage: async (c) => {
 		const vm = await c.req.json() as PersonPageModel;
 		return c.render(<PersonPage vm={vm}></PersonPage>);
-	});
+	}
+}
+
+function init(hono: Hono) {
 	hono.post(PERSON_DETAILS_URL, async (c) => {
 		const vm = await c.req.json() as PersonDetailModel;
 		return c.render(<PersonDetails vm={vm}></PersonDetails>);

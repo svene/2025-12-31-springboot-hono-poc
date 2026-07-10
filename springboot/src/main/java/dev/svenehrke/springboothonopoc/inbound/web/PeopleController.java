@@ -40,7 +40,7 @@ public class PeopleController {
 	@GetMapping(PAGE_PEOPLE_URL)
 	public ResponseEntity<String> peoplePage() {
 		var vm = new PersonPageModel(peopleService.personTableModel());
-		return honoAppApi.peoplePage(vm);
+		return honoAppClient.route("PersonPage", vm);
 	}
 
 	@GetMapping(PERSON_TABLE_URL)

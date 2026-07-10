@@ -23,9 +23,6 @@ public class HonoAppApi {
 		this.honoAppClient = honoAppClient;
 	}
 
-	public ResponseEntity<String> peoplePage(PersonPageModel vm) {
-		return honoAppClient.post(PAGE_PEOPLE_URL, vm);
-	}
 	public ResponseEntity<String> peopleUrl(PersonTableModel vm) {
 		return honoAppClient.post(PERSON_TABLE_URL, vm);
 	}
