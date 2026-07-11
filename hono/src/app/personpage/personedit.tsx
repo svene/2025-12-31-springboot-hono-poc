@@ -1,6 +1,5 @@
-import {PersonEditModel} from "./person-page-model-vm";
-
 import {PersonSpringUrls} from "./personpagerouting";
+import {PersonEditModel} from "../../generated/types/vm-types";
 
 export const PersonEditor = (props: { vm: PersonEditModel }) => (
 	<tr id={`row-${props.vm.id}-edit`}>

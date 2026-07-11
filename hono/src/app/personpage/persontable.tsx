@@ -1,5 +1,5 @@
-import {PersonTableModel} from "./person-page-model-vm";
 import {PersonRow} from "./personrow";
+import {PersonTableModel} from "../../generated/types/vm-types";
 
 export const PersonTable = (props: { vm: PersonTableModel }) => (
 	<div id="result-table">
