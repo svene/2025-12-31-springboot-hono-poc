@@ -4,10 +4,9 @@ import {PersonDetails} from "./persondetails";
 import {PersonDetailsBack} from "./persondetailsback";
 import {PersonTable} from "./persontable";
 import {PersonPage} from "./personpage";
-import {PersonEditModel, PersonPageModel, PersonTableModel, PersonTableRowModel} from "./person-page-model-vm";
+import {PersonDetailModel, PersonEditModel, PersonPageModel, PersonTableModel, PersonTableRowModel} from "../../generated/types/vm-types";
 import {PersonRow} from "./personrow";
 import {PersonEditBack} from "./personeditback";
-import {PersonDetailModel} from "../../generated/types/vm-types";
 
 export const personRoutes = {
 	PersonPage: async (c: Context) => {

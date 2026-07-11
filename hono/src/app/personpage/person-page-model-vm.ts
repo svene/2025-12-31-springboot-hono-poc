@@ -1,3 +1,4 @@
+/*
 export type PersonTableRowModel = {
 	id: number,
 	firstName: string,
@@ -20,3 +21,4 @@ export type PersonEditModel = {
 	streetName: string,
 }
 
+*/

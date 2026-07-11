@@ -1,5 +1,5 @@
-import {PersonTableRowModel} from "./person-page-model-vm";
 import {PersonRow} from "./personrow";
+import {PersonTableRowModel} from "../../generated/types/vm-types";
 
 export const PersonDetailsBack = (props: { vm: PersonTableRowModel }) => (
 		<>

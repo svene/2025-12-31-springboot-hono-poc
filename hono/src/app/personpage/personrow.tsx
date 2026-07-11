@@ -1,6 +1,6 @@
-import {PersonTableRowModel} from "./person-page-model-vm";
 
 import {PersonSpringUrls} from "./personpagerouting";
+import {PersonTableRowModel} from "../../generated/types/vm-types";
 
 export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 	<tr
