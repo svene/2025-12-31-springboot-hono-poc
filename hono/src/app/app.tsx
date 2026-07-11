@@ -1,5 +1,5 @@
 import {Context, Hono} from "hono";
-import { serveStatic } from 'hono/bun';
+import {serveStatic} from 'hono/bun';
 import {personRoutes} from "./personpage/personpagerouting";
 import {miscRoutes} from "./misc/miscrouting";
 
@@ -26,4 +26,8 @@ function init(hono: Hono) {
 
 export const app = {
 	init,
+}
+export const AppSpringUrls = {
+	infoPage: '/info',
+	personPage: '/page/people',
 }

@@ -1,16 +1,10 @@
-import {Context, Hono} from "hono";
+import {Context} from "hono";
 import {PersonEditor} from "./personedit";
 import {PersonDetails} from "./persondetails";
 import {PersonDetailsBack} from "./persondetailsback";
 import {PersonTable} from "./persontable";
 import {PersonPage} from "./personpage";
-import {
-	PersonDetailModel,
-	PersonEditModel,
-	PersonPageModel,
-	PersonTableModel,
-	PersonTableRowModel
-} from "./person-page-model-vm";
+import {PersonDetailModel, PersonEditModel, PersonPageModel, PersonTableModel, PersonTableRowModel} from "./person-page-model-vm";
 import {PersonRow} from "./personrow";
 import {PersonEditBack} from "./personeditback";
 
@@ -44,3 +38,12 @@ export const personRoutes = {
 		return c.render(<PersonEditBack vm={vm}></PersonEditBack>);
 	},
 }
+export const PersonSpringUrls = {
+	Person: {
+		details: (id: number) => `/person/${id}/details`,
+		detailsBack: (id: number) => `/person/${id}/detailsback`,
+		edit: (id: number) => `/person/${id}/edit`,
+		editBack: (id: number) => `/person/${id}/editback`,
+		table: () => `/persontable`,
+	},
+};
