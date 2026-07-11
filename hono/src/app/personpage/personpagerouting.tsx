@@ -1,4 +1,4 @@
-import {Hono} from "hono";
+import {Context, Hono} from "hono";
 import {PersonEditor} from "./personedit";
 import {PersonDetails} from "./persondetails";
 import {PersonDetailsBack} from "./persondetailsback";
@@ -23,7 +23,7 @@ const PERSON_DETAILS_BACK_URL = '/person/detailsback';
 const PERSON_EDIT_BACK_URL = '/person/editback';
 
 export const personRoutes = {
-	PersonPage: async (c) => {
+	PersonPage: async (c: Context) => {
 		const vm = await c.req.json() as PersonPageModel;
 		return c.render(<PersonPage vm={vm}></PersonPage>);
 	}
