@@ -43,7 +43,7 @@ Back comes the HTML which Spring Boot simply returns to the browser.
 ### Build it
 
 - You need to have bun installed for Hono and Java with Maven for Spring Boot.
-- Invoke: `package.json: script: genjava`
+- `mvn package`
 
 
 ### Run it
