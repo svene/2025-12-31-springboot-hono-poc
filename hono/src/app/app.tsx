@@ -6,7 +6,7 @@ import {miscRoutes} from "./misc/miscrouting";
 const ROUTER_URL = '/router';
 
 const unsupported = (name: string) => async (c: Context) => {
-	return c.text(`Unsupported name: ${name ?? '(missing)'}`, 400)
+	return c.text(`Unsupported route: ${name ?? '(missing)'}`, 400)
 }
 
 const routes: Record<string, (c: Context) => Promise<Response>> = {

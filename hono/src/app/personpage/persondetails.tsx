@@ -1,6 +1,6 @@
-import {PersonDetailModel} from "./person-page-model-vm";
 import {PersondetailsCard} from "./persondetailscard";
 import {PersondetailsRow} from "./persondetailrow";
+import {PersonDetailModel} from "../../generated/types/vm-types";
 
 export const PersonDetails = (props: { vm: PersonDetailModel }) => (
 		<>
