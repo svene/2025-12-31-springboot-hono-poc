@@ -4,7 +4,6 @@ import dev.svenehrke.springboothonopoc.core.PersonEditModel;
 import dev.svenehrke.springboothonopoc.core.PersonPageModel;
 import dev.svenehrke.springboothonopoc.core.PeopleService;
 import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppClient;
-import dev.svenehrke.springboothonopoc.outbound.hono.HonoAppApi;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,16 +24,13 @@ public class PeopleController {
 
 	private final PeopleService peopleService;
 	private final HonoAppClient honoAppClient;
-	private final HonoAppApi honoAppApi;
 
 	public PeopleController(
 		PeopleService peopleService,
-		HonoAppClient honoAppClient,
-		HonoAppApi honoAppApi
+		HonoAppClient honoAppClient
 	) {
 		this.peopleService = peopleService;
 		this.honoAppClient = honoAppClient;
-		this.honoAppApi = honoAppApi;
 	}
 
 	@GetMapping(PAGE_PEOPLE_URL)
@@ -45,32 +41,32 @@ public class PeopleController {
 
 	@GetMapping(PERSON_TABLE_URL)
 	public ResponseEntity<String> peopleUrl(@RequestParam() String search) {
-		return honoAppApi.peopleUrl(peopleService.peopleForSearch(search));
+		return honoAppClient.route("PersonTable", peopleService.peopleForSearch(search));
 	}
 
 	@GetMapping("/person/{id}/edit")
 	public ResponseEntity<String> edit(@PathVariable int id) {
-		return honoAppApi.personEdit(peopleService.personTableRowModel(id));
+		return honoAppClient.route("PersonEditor", peopleService.personTableRowModel(id));
 	}
 	@GetMapping("/person/{id}/editback")
 	public ResponseEntity<String> editback(@PathVariable int id) {
-		return honoAppApi.personEditBack(peopleService.personTableDetailModel(id));
+		return honoAppClient.route("PersonEditBack", peopleService.personTableDetailModel(id));
 	}
 
 
 	@GetMapping("/person/{id}/details")
 	public ResponseEntity<String> details(@PathVariable int id) {
-		return honoAppApi.personDetails(peopleService.personTableDetailModel(id));
+		return honoAppClient.route("PersonDetails", peopleService.personTableDetailModel(id));
 	}
 
 	@GetMapping("/person/{id}/row")
 	public ResponseEntity<String> row(@PathVariable int id) {
-		return honoAppApi.personRow(peopleService.personTableRowModel(id));
+		return honoAppClient.route("PersonRow", peopleService.personTableRowModel(id));
 	}
 
 	@GetMapping("/person/{id}/detailsback")
 	public ResponseEntity<String> detailsback(@PathVariable int id) {
-		return honoAppApi.personDetailsBack(peopleService.personTableRowModel(id));
+		return honoAppClient.route("PersonDetailsBack", peopleService.personTableRowModel(id));
 	}
 
 	@DeleteMapping("/person/delete")

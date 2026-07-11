@@ -14,53 +14,33 @@ import {
 import {PersonRow} from "./personrow";
 import {PersonEditBack} from "./personeditback";
 
-export const PERSON_PAGE_URL = '/page/people';
-const PERSON_TABLE_URL = '/persontable';
-const PERSON_DETAILS_URL = '/person/details';
-const PERSON_EDIT_URL = '/person/edit';
-const PERSON_ROW_URL = '/person/row';
-const PERSON_DETAILS_BACK_URL = '/person/detailsback';
-const PERSON_EDIT_BACK_URL = '/person/editback';
-
 export const personRoutes = {
 	PersonPage: async (c: Context) => {
 		const vm = await c.req.json() as PersonPageModel;
 		return c.render(<PersonPage vm={vm}></PersonPage>);
-	}
-}
-
-function init(hono: Hono) {
-	hono.post(PERSON_DETAILS_URL, async (c) => {
-		const vm = await c.req.json() as PersonDetailModel;
-		return c.render(<PersonDetails vm={vm}></PersonDetails>);
-	});
-	hono.post(PERSON_EDIT_URL, async (c) => {
-		const vm = await c.req.json() as PersonEditModel;
-		return c.render(<PersonEditor vm={vm}></PersonEditor>);
-	});
-
-	hono.post(PERSON_ROW_URL, async (c) => {
-		const vm = await c.req.json() as PersonTableRowModel;
-		return c.render(<PersonRow vm={vm}></PersonRow>);
-	});
-
-	hono.post(PERSON_DETAILS_BACK_URL, async (c) => {
-		const vm = await c.req.json() as PersonTableRowModel;
-		return c.render(<PersonDetailsBack vm={vm}></PersonDetailsBack>);
-	});
-
-	hono.post(PERSON_TABLE_URL, async (c) => {
+	},
+	PersonTable: async (c: Context) => {
 		const vm = await c.req.json() as PersonTableModel;
 		return c.render(<PersonTable vm={vm}></PersonTable>);
-	});
-
-	hono.post(PERSON_EDIT_BACK_URL, async (c) => {
+	},
+	PersonDetails: async (c: Context) => {
+		const vm = await c.req.json() as PersonDetailModel;
+		return c.render(<PersonDetails vm={vm}></PersonDetails>);
+	},
+	PersonEditor: async (c: Context) => {
+		const vm = await c.req.json() as PersonEditModel;
+		return c.render(<PersonEditor vm={vm}></PersonEditor>);
+	},
+	PersonRow: async (c: Context) => {
+		const vm = await c.req.json() as PersonTableRowModel;
+		return c.render(<PersonRow vm={vm}></PersonRow>);
+	},
+	PersonDetailsBack: async (c: Context) => {
+		const vm = await c.req.json() as PersonTableRowModel;
+		return c.render(<PersonDetailsBack vm={vm}></PersonDetailsBack>);
+	},
+	PersonEditBack: async (c: Context) => {
 		const vm = await c.req.json() as PersonDetailModel;
 		return c.render(<PersonEditBack vm={vm}></PersonEditBack>);
-	});
-
-}
-
-export const personPageRouting = {
-	init,
+	},
 }
