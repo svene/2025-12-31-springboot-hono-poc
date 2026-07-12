@@ -9,7 +9,7 @@ import {PersonRow} from "./personrow";
 import {PersonEditBack} from "./personeditback";
 import {RouteDefinition} from "../common/app-types";
 
-export const personRoutes: Record<string, RouteDefinition> = {
+export const personRoutes = {
 	PersonPage: {
 		url: () => `/page/people`,
 		render: async (c: Context) => {
@@ -59,5 +59,5 @@ export const personRoutes: Record<string, RouteDefinition> = {
 			return c.render(<PersonEditBack vm={vm}></PersonEditBack>);
 		}
 	},
-}
+} satisfies Record<string, RouteDefinition>;
 
