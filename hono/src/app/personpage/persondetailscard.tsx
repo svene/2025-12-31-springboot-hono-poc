@@ -1,4 +1,4 @@
-import {PersonSpringUrls} from "./personpagerouting";
+import {personRoutes} from "./personpagerouting";
 import {PersonDetailModel} from "../../generated/types/vm-types";
 
 export const PersondetailsCard = (props: { vm: PersonDetailModel }) => (
@@ -9,7 +9,7 @@ export const PersondetailsCard = (props: { vm: PersonDetailModel }) => (
 				hx-trigger="click"
 				hx-target="this"
 				hx-swap="outerHTML"
-				hx-get={PersonSpringUrls.Person.edit(props.vm.id)}
+				hx-get={personRoutes.PersonEditor.url(props.vm.id)}
 			>
 				<td colSpan={4} style="padding-left: 30px">
 

@@ -1,4 +1,4 @@
-import {PersonSpringUrls} from "./personpagerouting";
+import {personRoutes} from "./personpagerouting";
 import {PersonEditModel} from "../../generated/types/vm-types";
 
 export const PersonEditor = (props: { vm: PersonEditModel }) => (
@@ -40,7 +40,7 @@ export const PersonEditor = (props: { vm: PersonEditModel }) => (
 							hx-trigger="click consume"
 							hx-target="closest tr"
 							hx-swap="outerHTML"
-							hx-get={PersonSpringUrls.Person.editBack(props.vm.id)}
+							hx-get={personRoutes.PersonEditBack.url(props.vm.id)}
 						>&lt; Back
 						</button>
 						<button

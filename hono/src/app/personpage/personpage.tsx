@@ -1,7 +1,7 @@
 import {MpaLayout} from "../../ui/components/mpalayout";
 import {PersonTable} from "./persontable";
 
-import {PersonSpringUrls} from "./personpagerouting";
+import {personRoutes} from "./personpagerouting";
 import {PersonPageModel} from "../../generated/types/vm-types";
 
 export const PersonPage = (props: { vm: PersonPageModel }) => (
@@ -16,7 +16,7 @@ export const PersonPage = (props: { vm: PersonPageModel }) => (
 						name="search"
 						placeholder="Search for firstname or lastname"
 						hx-trigger="input changed delay:500ms"
-						hx-get={PersonSpringUrls.Person.table()}
+						hx-get={personRoutes.PersonTable.url()}
 						hx-target="#result-table"
 					/>
 				</div>

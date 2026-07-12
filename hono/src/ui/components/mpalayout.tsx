@@ -1,6 +1,7 @@
 import type {Child} from 'hono/jsx'
 
-import {AppSpringUrls} from "../../app/app";
+import {personRoutes} from "../../app/personpage/personpagerouting";
+import {miscRoutes} from "../../app/misc/miscrouting";
 
 export const MpaLayout = (props: {selectedMenu: string, children: Child }) => (
 	<html lang="en" x-data="$store.darkMode" x-bind:data-theme="theme">
@@ -35,8 +36,8 @@ export const MpaLayout = (props: {selectedMenu: string, children: Child }) => (
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<div class="navbar-menu">
 				<div class="navbar-start">
-					<a class={`navbar-item ${props.selectedMenu === 'people' ? 'is-selected' : ''}`} href={AppSpringUrls.personPage}>People</a>
-					<a class={`navbar-item ${props.selectedMenu === 'info' ? 'is-selected' : ''}`} href={AppSpringUrls.infoPage}>Info</a>
+					<a class={`navbar-item ${props.selectedMenu === 'people' ? 'is-selected' : ''}`} href={personRoutes.PersonPage.url()}>People</a>
+					<a class={`navbar-item ${props.selectedMenu === 'info' ? 'is-selected' : ''}`} href={miscRoutes.InfoPage.url()}>Info</a>
 				</div>
 			</div>
 		</nav>

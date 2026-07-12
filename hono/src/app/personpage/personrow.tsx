@@ -1,5 +1,4 @@
-
-import {PersonSpringUrls} from "./personpagerouting";
+import {personRoutes} from "./personpagerouting";
 import {PersonTableRowModel} from "../../generated/types/vm-types";
 
 export const PersonRow = (props: {vm: PersonTableRowModel}) => (
@@ -9,7 +8,7 @@ export const PersonRow = (props: {vm: PersonTableRowModel}) => (
 		hx-trigger="click"
 		hx-target="this"
 		hx-swap="outerHTML"
-		hx-get={PersonSpringUrls.Person.details(props.vm.id)}
+		hx-get={personRoutes.PersonDetails.url(props.vm.id)}
 	>
 		<td hx-trigger="click consume">
 			<input type="checkbox" name="selection" value={props.vm.id} form="bulkDeleteForm"></input>

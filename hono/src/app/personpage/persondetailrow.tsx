@@ -1,5 +1,4 @@
-
-import {PersonSpringUrls} from "./personpagerouting";
+import {personRoutes} from "./personpagerouting";
 import {PersonDetailModel} from "../../generated/types/vm-types";
 
 export const PersondetailsRow = (props: { vm: PersonDetailModel }) => (
@@ -10,7 +9,7 @@ export const PersondetailsRow = (props: { vm: PersonDetailModel }) => (
 				hx-trigger="click"
 				hx-target="this"
 				hx-swap="outerHTML"
-				hx-get={PersonSpringUrls.Person.detailsBack(props.vm.id)}
+				hx-get={personRoutes.PersonDetailsBack.url(props.vm.id)}
 			>
 				<td style="border-style: none"></td>
 				<td style="border-style: none">{props.vm.firstName}</td>
