@@ -36,37 +36,37 @@ public class PeopleController {
 	@GetMapping(PAGE_PEOPLE_URL)
 	public ResponseEntity<String> peoplePage() {
 		var vm = new PersonPageModel(peopleService.personTableModel());
-		return honoAppClient.route("PersonPage", vm);
+		return honoAppClient.uiroute("PersonPage", vm);
 	}
 
 	@GetMapping(PERSON_TABLE_URL)
 	public ResponseEntity<String> peopleUrl(@RequestParam() String search) {
-		return honoAppClient.route("PersonTable", peopleService.peopleForSearch(search));
+		return honoAppClient.uiroute("PersonTable", peopleService.peopleForSearch(search));
 	}
 
 	@GetMapping("/person/{id}/edit")
 	public ResponseEntity<String> edit(@PathVariable int id) {
-		return honoAppClient.route("PersonEditor", peopleService.personTableRowModel(id));
+		return honoAppClient.uiroute("PersonEditor", peopleService.personTableRowModel(id));
 	}
 	@GetMapping("/person/{id}/editback")
 	public ResponseEntity<String> editback(@PathVariable int id) {
-		return honoAppClient.route("PersonEditBack", peopleService.personTableDetailModel(id));
+		return honoAppClient.uiroute("PersonEditBack", peopleService.personTableDetailModel(id));
 	}
 
 
 	@GetMapping("/person/{id}/details")
 	public ResponseEntity<String> details(@PathVariable int id) {
-		return honoAppClient.route("PersonDetails", peopleService.personTableDetailModel(id));
+		return honoAppClient.uiroute("PersonDetails", peopleService.personTableDetailModel(id));
 	}
 
 	@GetMapping("/person/{id}/row")
 	public ResponseEntity<String> row(@PathVariable int id) {
-		return honoAppClient.route("PersonRow", peopleService.personTableRowModel(id));
+		return honoAppClient.uiroute("PersonRow", peopleService.personTableRowModel(id));
 	}
 
 	@GetMapping("/person/{id}/detailsback")
 	public ResponseEntity<String> detailsback(@PathVariable int id) {
-		return honoAppClient.route("PersonDetailsBack", peopleService.personTableRowModel(id));
+		return honoAppClient.uiroute("PersonDetailsBack", peopleService.personTableRowModel(id));
 	}
 
 	@DeleteMapping("/person/delete")

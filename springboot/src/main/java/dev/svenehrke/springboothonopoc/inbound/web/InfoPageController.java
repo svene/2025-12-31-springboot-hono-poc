@@ -27,7 +27,7 @@ public class InfoPageController {
 
 	@GetMapping(INFO_PAGE_URL)
 	public ResponseEntity<String> people() {
-		return honoAppClient.route("InfoPage", Collections.emptyMap());
+		return honoAppClient.uiroute("InfoPage", Collections.emptyMap());
 	}
 
 }
