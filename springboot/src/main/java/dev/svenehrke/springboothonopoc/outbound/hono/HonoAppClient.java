@@ -34,7 +34,7 @@ public class HonoAppClient {
 		return restClient
 			.post()
 			.uri(uriBuilder -> uriBuilder
-				.path("/router")
+				.path("/uiroute")
 				.queryParam("name", name)
 				.build())
 			.contentType(MediaType.APPLICATION_JSON)

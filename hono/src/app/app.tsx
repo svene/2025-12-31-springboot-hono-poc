@@ -4,7 +4,7 @@ import {personRoutes} from "./personpage/personpagerouting";
 import {miscRoutes} from "./misc/miscrouting";
 import {RouteDefinition} from "./common/app-types";
 
-const ROUTER_URL = '/router';
+const ROUTER_URL = '/uiroute';
 
 const unsupported = (name: string) => {
 	return {
