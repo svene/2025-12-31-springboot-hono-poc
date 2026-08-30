@@ -11,7 +11,7 @@ export const MpaLayout = (props: {selectedMenu: string, children: Child }) => (
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>"/>
 		<script src="/static/js/htmx.org/4.0.0/htmx.js"></script>
 		<script defer src="/static/js/mpa.js"></script>
-		<script defer src="/static/js/alpinejs/3.15.4/cdn.min.js"></script>
+		<script defer src="/static/js/alpinejs/3.16.3/cdn.min.js"></script>
 		<link rel="stylesheet" href="/static/css/bulma.min.css"/>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	</head>
