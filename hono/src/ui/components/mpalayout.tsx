@@ -12,7 +12,7 @@ export const MpaLayout = (props: {selectedMenu: string, children: Child }) => (
 		<script src="/static/js/htmx.org/4.0.0/htmx.js"></script>
 		<script defer src="/static/js/mpa.js"></script>
 		<script defer src="/static/js/alpinejs/3.16.3/cdn.min.js"></script>
-		<link rel="stylesheet" href="/static/css/bulma.min.css"/>
+		<link rel="stylesheet" href="/static/css/bulma/1.0.4/bulma.min.css"/>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	</head>
 
